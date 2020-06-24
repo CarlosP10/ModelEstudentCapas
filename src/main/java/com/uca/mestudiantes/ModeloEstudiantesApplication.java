@@ -1,4 +1,4 @@
-package com.uca.labo5;
+package com.uca.mestudiantes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

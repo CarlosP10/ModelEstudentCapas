@@ -1,4 +1,4 @@
-package com.uca.labo5;
+package com.uca.mestudiantes;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
