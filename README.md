@@ -10,6 +10,8 @@ En la carpeta BD esta la Base de Datos
 #### Trabajar con Branches 
 * Crearse su propia rama
   * ##### git branch branchName
+* Ver las rama actuales
+  * ##### git branch -a
 * Ver la rama actual
   * ##### git branch 
 * Ver si hay procesos en la rama
