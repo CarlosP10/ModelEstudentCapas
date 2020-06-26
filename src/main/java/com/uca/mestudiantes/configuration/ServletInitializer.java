@@ -1,4 +1,4 @@
-package com.uca.mestudiantes;
+package com.uca.mestudiantes.configuration;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

@@ -1,4 +1,4 @@
-package com.uca.mestudiantes;
+package com.uca.mestudiantes.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

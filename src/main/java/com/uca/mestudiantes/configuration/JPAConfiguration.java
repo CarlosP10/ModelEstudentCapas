@@ -1,4 +1,4 @@
-package com.uca.mestudiantes;
+package com.uca.mestudiantes.configuration;
 
 import java.util.Properties;
 import javax.sql.DataSource;
