@@ -3,9 +3,12 @@ package com.uca.mestudiantes.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -33,10 +36,9 @@ public class Escuelas {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
-	@Column(name = "id_dpto")
-	private Integer id_dpto;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_dpto")
+	private Departamento id_dpto;
 
 	public Integer getId_escuela() {
 		return id_escuela;
@@ -70,11 +72,11 @@ public class Escuelas {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getId_dpto() {
+	public Departamento getId_dpto() {
 		return id_dpto;
 	}
 
-	public void setId_dpto(Integer id_dpto) {
+	public void setId_dpto(Departamento id_dpto) {
 		this.id_dpto = id_dpto;
 	}
 

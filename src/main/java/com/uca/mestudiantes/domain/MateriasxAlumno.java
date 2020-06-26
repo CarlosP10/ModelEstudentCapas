@@ -2,9 +2,12 @@ package com.uca.mestudiantes.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -16,16 +19,17 @@ public class MateriasxAlumno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_materiaexp;
 		
-	@Column(name = "id_expediente")
-	private Integer id_expediente;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_expediente")
+	private Expediente id_expediente;
 	
-	@NotEmpty(message = "No puede estar vacio")	
-	@Column(name = "id_ciclo")
-	private Integer id_ciclo;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_ciclo")
+	private Ciclo id_ciclo;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Column(name = "id_materia")
-	private Integer id_materia;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_materia")
+	private Materias id_materia;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@Column(name = "anio")
@@ -43,27 +47,27 @@ public class MateriasxAlumno {
 		this.id_materiaexp = id_materiaexp;
 	}
 
-	public Integer getId_expediente() {
+	public Expediente getId_expediente() {
 		return id_expediente;
 	}
 
-	public void setId_expediente(Integer id_expediente) {
+	public void setId_expediente(Expediente id_expediente) {
 		this.id_expediente = id_expediente;
 	}
 
-	public Integer getId_ciclo() {
+	public Ciclo getId_ciclo() {
 		return id_ciclo;
 	}
 
-	public void setId_ciclo(Integer id_ciclo) {
+	public void setId_ciclo(Ciclo id_ciclo) {
 		this.id_ciclo = id_ciclo;
 	}
 
-	public Integer getId_materia() {
+	public Materias getId_materia() {
 		return id_materia;
 	}
 
-	public void setId_materia(Integer id_materia) {
+	public void setId_materia(Materias id_materia) {
 		this.id_materia = id_materia;
 	}
 

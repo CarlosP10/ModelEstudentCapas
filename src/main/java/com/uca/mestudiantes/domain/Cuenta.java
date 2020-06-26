@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -40,15 +43,13 @@ public class Cuenta {
 	@Column(name = "edad")
 	private Integer edad;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
-	@Column(name = "id_dpto")
-	private Integer id_dpto;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_dpto")
+	private Departamento id_dpto;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
-	@Column(name = "id_municipio")
-	private Integer id_municipio;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_municipio")
+	private Municipio id_municipio;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
@@ -70,10 +71,9 @@ public class Cuenta {
 	@Column(name = "contrasenia")
 	private String contrasenia;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
-	@Column(name = "id_tipo")
-	private Integer id_tipo;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_tipo")
+	private TipoUsuario id_tipo;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
@@ -120,19 +120,19 @@ public class Cuenta {
 		this.edad = edad;
 	}
 
-	public Integer getId_dpto() {
+	public Departamento getId_dpto() {
 		return id_dpto;
 	}
 
-	public void setId_dpto(Integer id_dpto) {
+	public void setId_dpto(Departamento id_dpto) {
 		this.id_dpto = id_dpto;
 	}
 
-	public Integer getId_municipio() {
+	public Municipio getId_municipio() {
 		return id_municipio;
 	}
 
-	public void setId_municipio(Integer id_municipio) {
+	public void setId_municipio(Municipio id_municipio) {
 		this.id_municipio = id_municipio;
 	}
 
@@ -168,11 +168,11 @@ public class Cuenta {
 		this.contrasenia = contrasenia;
 	}
 
-	public Integer getId_tipo() {
+	public TipoUsuario getId_tipo() {
 		return id_tipo;
 	}
 
-	public void setId_tipo(Integer id_tipo) {
+	public void setId_tipo(TipoUsuario id_tipo) {
 		this.id_tipo = id_tipo;
 	}
 

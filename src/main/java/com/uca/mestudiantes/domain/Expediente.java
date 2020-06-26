@@ -1,12 +1,16 @@
 package com.uca.mestudiantes.domain;
 
 import java.util.Date;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -54,10 +58,9 @@ public class Expediente {
 	@Column(name = "telefono_movil")
 	private Integer telefono_movil;
 	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
-	@Column(name = "id_escuela")
-	private Integer id_escuela;
+	@ManyToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "id_escuela")
+	private Escuelas id_escuela;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
@@ -68,6 +71,9 @@ public class Expediente {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
 	@Column(name = "nombre_madre")
 	private String nombre_madre;
+	
+	@OneToMany(mappedBy = "expediente", fetch = FetchType.EAGER)
+	private List<MateriasxAlumno> materiasxAlumnos;
 
 	public Integer getId_expediente() {
 		return id_expediente;
@@ -133,11 +139,11 @@ public class Expediente {
 		this.telefono_movil = telefono_movil;
 	}
 
-	public Integer getId_escuela() {
+	public Escuelas getId_escuela() {
 		return id_escuela;
 	}
 
-	public void setId_escuela(Integer id_escuela) {
+	public void setId_escuela(Escuelas id_escuela) {
 		this.id_escuela = id_escuela;
 	}
 
@@ -155,6 +161,14 @@ public class Expediente {
 
 	public void setNombre_madre(String nombre_madre) {
 		this.nombre_madre = nombre_madre;
+	}
+
+	public List<MateriasxAlumno> getMateriasxAlumnos() {
+		return materiasxAlumnos;
+	}
+
+	public void setMateriasxAlumnos(List<MateriasxAlumno> materiasxAlumnos) {
+		this.materiasxAlumnos = materiasxAlumnos;
 	}
 
 	public Expediente() {}
