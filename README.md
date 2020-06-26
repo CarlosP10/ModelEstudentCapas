@@ -8,10 +8,19 @@ En la carpeta BD esta la Base de Datos
 
 
 #### Trabajar con Branches 
-* git branch --Ver la rama actual
-* git status --Ver si hay procesos en la rama
-* git checkout branchName --cambiarse a la rama que quieran
-  * Si ya estan en una branch trabajar como si fuera la master todo blue
-* git checkout master --Regresar a la master
-  * git pull para ver si no hay cambios si no hay
-  * git merge branchName --Para hacer el merge con la master de la rama en la que hayan realizado cambios
+* Crearse su propia rama
+  * ##### git branch branchName
+* Ver la rama actual
+  * ##### git branch 
+* Ver si hay procesos en la rama
+	* ##### git status
+* Cambiarse a la rama que quieran
+	* ##### git checkout branchName
+* Hacer push desde una rama
+	* ##### git push --set-upstream origin branchName
+* Regresar a la master
+	* ##### git checkout master
+  * ##### git pull 
+	--para ver si no hay cambios, si no hay
+  * ##### git merge branchName 
+	--Para hacer el merge con la master de la rama en la que hayan realizado cambios
