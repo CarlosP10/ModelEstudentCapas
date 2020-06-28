@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import com.uca.mestudiantes.domain.MateriasxAlumno;
 
 @Entity
 @Table(schema = "public", name = "expediente")
@@ -72,8 +73,8 @@ public class Expediente {
 	@Column(name = "nombre_madre")
 	private String nombre_madre;
 	
-	@OneToMany(mappedBy = "expediente", fetch = FetchType.EAGER)
-	private List<MateriasxAlumno> materiasxAlumnos;
+//	@OneToMany(mappedBy = "expediente", fetch = FetchType.LAZY)
+//	private List<MateriasxAlumno> materiasxAlumnos;
 
 	public Integer getId_expediente() {
 		return id_expediente;
@@ -163,13 +164,13 @@ public class Expediente {
 		this.nombre_madre = nombre_madre;
 	}
 
-	public List<MateriasxAlumno> getMateriasxAlumnos() {
-		return materiasxAlumnos;
-	}
-
-	public void setMateriasxAlumnos(List<MateriasxAlumno> materiasxAlumnos) {
-		this.materiasxAlumnos = materiasxAlumnos;
-	}
+//	public List<MateriasxAlumno> getMateriasxAlumnos() {
+//		return materiasxAlumnos;
+//	}
+//
+//	public void setMateriasxAlumnos(List<MateriasxAlumno> materiasxAlumnosList) {
+//		this.materiasxAlumnos = materiasxAlumnosList;
+//	}
 
 	public Expediente() {}
 	

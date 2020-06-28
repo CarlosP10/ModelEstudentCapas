@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import com.uca.mestudiantes.domain.*;
 
 @Entity
 @Table(schema = "public", name = "materiaxalumno")

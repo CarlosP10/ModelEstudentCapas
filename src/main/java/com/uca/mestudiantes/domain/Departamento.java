@@ -22,8 +22,8 @@ public class Departamento {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
-	private List<Escuelas> escuelas;
+//	@OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
+//	private List<Escuelas> escuelas;
 
 	public Integer getId_dpto() {
 		return id_dpto;
@@ -41,13 +41,13 @@ public class Departamento {
 		this.nombre = nombre;
 	}
 
-	public List<Escuelas> getEscuelas() {
-		return escuelas;
-	}
-
-	public void setEscuelas(List<Escuelas> escuelas) {
-		this.escuelas = escuelas;
-	}
+//	public List<Escuelas> getEscuelas() {
+//		return escuelas;
+//	}
+//
+//	public void setEscuelas(List<Escuelas> escuelas) {
+//		this.escuelas = escuelas;
+//	}
 
 	public Departamento() {
 	}
