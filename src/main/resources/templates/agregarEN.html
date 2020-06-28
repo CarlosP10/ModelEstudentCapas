@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlms:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Agregar Nuevo Expediente</title>
+</head>
+<body>
+	<form th:action="@{/agregarNuevoExpediente}" th:object="${expediente}" method="post">
+
+		<h1 class="display-4">Ingresar Expediente</h1>
+		
+		<div class="form group">
+		
+			<label>Nombres :</label><br>
+			<input class="form-control" type="text" th:field="${expediente.nombres}"><br>
+			<span th:errors="${expediente.nombres}" style="color:  #E81505;"></span><br>
+			
+			<label>Apellidos:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.apellidos}"><br>
+			<span th:errors="${expediente.apellidos}" style="color:  #E81505;"></span><br>
+			
+			<label>Numero de Carnet de minoridad:</label><br>
+			<input class="form-control" type="number" th:field="${expediente.numerocarnet}"><br>
+			<span th:errors="${expediente.numerocarnet}" style="color:  #E81505;"></span><br>
+			
+			<label>Fecha de Nacimiento:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.fecha_nacimiento}"><br>
+			<span th:errors="${expediente.fecha_nacimiento}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Edad:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.edad}"><br>
+			<span th:errors="${expediente.edad}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Direccion:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.direccion}"><br>
+			<span th:errors="${expediente.direccion}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Telefono fijo:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.telefono_fijo}"><br>
+			<span th:errors="${expediente.telefono_fijo}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Telefono movil:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.telefono_movil}"><br>
+			<span th:errors="${expediente.telefono_movil}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Institucion o centro escolar de procedencia:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.id_escuela}"><br>
+			<span th:errors="${expediente.id_escuela}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Nombre del Padre:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.nombre_padre}"><br>
+			<span th:errors="${expediente.nombre_padre}" style="color:  #E81505;"></span><br><br>
+			
+			<label>Nombre de la Madre:</label><br>
+			<input class="form-control" type="text" th:field="${expediente.nombre_madre}"><br>
+			<span th:errors="${expediente.nombre_madre}" style="color:  #E81505;"></span><br><br>
+			
+		</div>
+		
+		<input type="submit" class="btn btn-success" value="Guardar expediente">
+		
+		<input type="submit" class="btn btn-primary" value="Regresar">
+		
+		<input type="submit" class="btn btn-secondary" value="Limpiar">
+		
+	</form><br>
+
+</body>
+</html>
+</html>

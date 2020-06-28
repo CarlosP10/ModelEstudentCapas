@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	    <div id="content-wrapper">
+
+      <div class="container-fluid">
+			<h1 class="mt-4">Expediente de Alumnos</h1>
+			<div class="card mb-4">
+            	<div class="card-body">
+                <form method="post" th:action="@{/expedienteA}" th:object="${expediente}">
+                                  <div class="form-group">
+                    <div class="form-row">
+                      <span>Buscar alumno por:&nbsp;&nbsp;&nbsp;</span>
+                      <select name="estado" class="form-control" style="width: 300px;">
+                        <option value="true">Nombre</option>
+                        <option value="false">Apellido</option>
+                      </select>
+                    </div>
+                  </div>
+	            		<div class="form-group">
+	            			<input class="form-control py-4" id="id_expediente" type="text" placeholder="Valor de busqueda:" style="width: 400px" name="expediente" />
+	            		</div>
+                      <div class="col">
+                        <input type="submit" class="btn btn-primary" value="Buscar">
+                      </div>
+                      <div class="col">
+                        <input type="submit" class="btn btn-success" value="Agregar nuevo Expediente">
+                      </div>
+                      <div class="col">
+                        <input type="submit" class="btn btn-success" value="Agregar nueva Materia">
+                      </div>
+	                </form>
+            	</div>
+            </div>
+            
+            
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- /.content-wrapper -->
+</body>
+</html>
