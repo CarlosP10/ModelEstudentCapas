@@ -79,6 +79,19 @@ public class Cuenta {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
 	@Column(name = "sesion")
 	private Boolean sesion;
+	
+	@NotEmpty(message = "No puede estar vacio")
+	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
+	@Column(name = "descripcion")
+	private String descripcion;
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 	public Integer getId_cuenta() {
 		return id_cuenta;
