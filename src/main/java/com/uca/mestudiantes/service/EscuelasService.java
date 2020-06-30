@@ -10,10 +10,14 @@ import com.uca.mestudiantes.domain.Escuelas;
 public interface EscuelasService {
 
 	public List<Escuelas> findAll() throws DataAccessException;
+	
+	public List<Escuelas> findAllCatalogo() throws DataAccessException;
 
 	public List<Escuelas> findAll(Sort sort);
 
 	public Escuelas findOne(Integer codigo) throws DataAccessException;
+	
+	public List<Escuelas> findOnebyDpto(Integer codigo) throws DataAccessException;
 
 	public void save(Escuelas c) throws DataAccessException;
 

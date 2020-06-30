@@ -14,6 +14,10 @@ public interface ExpedienteService {
 	public List<Expediente> findAll(Sort sort);
 
 	public Expediente findOne(Integer codigo) throws DataAccessException;
+	
+	public Expediente findByName(String nombre) throws DataAccessException;
+	
+	public Expediente findByLastName(String aoellido) throws DataAccessException;
 
 	public void save(Expediente c) throws DataAccessException;
 

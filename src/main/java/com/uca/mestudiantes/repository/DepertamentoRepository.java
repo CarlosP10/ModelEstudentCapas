@@ -10,7 +10,7 @@ import com.uca.mestudiantes.domain.Departamento;
 public interface DepertamentoRepository extends JpaRepository<Departamento, Integer>{
 	
 	@Query(value = "SELECT * from public.departamento", nativeQuery = true)
-    public List<Departamento> findAllCuentas();
+    public List<Departamento> findAllDptos();
 
 	public List<Departamento> findAll(Sort sort);
 	

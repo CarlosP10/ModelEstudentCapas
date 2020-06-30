@@ -10,6 +10,8 @@ import com.uca.mestudiantes.domain.Materias;
 public interface MateriasService {
 	
 	public List<Materias> findAll() throws DataAccessException;
+	
+	public List<Materias> findAllCatalogo() throws DataAccessException;
 
 	public List<Materias> findAll(Sort sort);
 

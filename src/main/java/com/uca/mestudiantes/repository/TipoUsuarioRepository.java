@@ -11,7 +11,7 @@ import com.uca.mestudiantes.domain.TipoUsuario;
 public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Integer>{
 	
 	@Query(value = "SELECT * from public.tipo_usuario", nativeQuery = true)
-    public List<TipoUsuario> findAllCuentas();
+    public List<TipoUsuario> findAllTipos();
 
 	public List<TipoUsuario> findAll(Sort sort);
 	

@@ -17,7 +17,7 @@ public interface MateriasxAlumnoRepository extends JpaRepository<MateriasxAlumno
     public List<MateriasxAlumno> findMateriasxAlumnoByIdMateria(Integer id_materia);
 	
 	@Query(value = "SELECT * FROM public.materiaxalumno WHERE id_expediente = ?1", nativeQuery = true)
-    public List<MateriasxAlumno> findMateriasxAlumnoByIdExpediente(Integer id_expediente);
+    public MateriasxAlumno findMateriasxAlumnoByIdExpediente(Integer id_expediente);
 	
 	@Query(value = "SELECT * FROM public.materiaxalumno WHERE id_ciclo = ?1", nativeQuery = true)
     public List<MateriasxAlumno> findMateriasxAlumnoByIdCiclo(Integer id_ciclo);

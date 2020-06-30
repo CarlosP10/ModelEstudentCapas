@@ -11,15 +11,18 @@ import com.uca.mestudiantes.domain.Expediente;
 public interface ExpedienteRepository extends JpaRepository<Expediente, Integer>{
 	
 	@Query(value = "SELECT * from public.expediente", nativeQuery = true)
-    public List<Expediente> findAllCuentas();
+    public List<Expediente> findAllExpedientes();
 
 	public List<Expediente> findAll(Sort sort);
 	
 	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE nombre = ?1")
-	public List<Expediente> mostrarPorNombre(String cadena) throws DataAccessException;
+	public Expediente mostrarPorNombre(String cadena) throws DataAccessException;
 	
 	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE apellido = ?1")
-	public List<Expediente> mostrarPorApellido(String cadena) throws DataAccessException;
+	public Expediente mostrarPorApellido(String cadena) throws DataAccessException;
+	
+	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE id_expediente = ?1")
+	public Expediente findByIdExp(Integer codigo) throws DataAccessException;
 	
 
 }

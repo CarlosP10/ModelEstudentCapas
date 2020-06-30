@@ -17,6 +17,9 @@ public interface EscuelasRepository extends JpaRepository<Escuelas, Integer>{
 	
 	@Query(value = "SELECT * FROM public.escuelas WHERE id_dpto = ?1", nativeQuery = true)
     public List<Escuelas> findEscuelaByDepartamento(Integer id_dpto);
+	
+	@Query(value = "SELECT * FROM public.escuelas WHERE id_escuela = ?1", nativeQuery = true)
+    public Escuelas findEscuelaById(Integer id_dpto);
 
 	public List<Escuelas> findAll(Sort sort);
 

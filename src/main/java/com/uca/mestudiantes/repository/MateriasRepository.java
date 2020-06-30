@@ -11,13 +11,13 @@ import com.uca.mestudiantes.domain.Materias;
 public interface MateriasRepository extends JpaRepository<Materias, Integer>{
 	
 	@Query(value = "SELECT * from public.materias", nativeQuery = true)
-    public List<Materias> findAllCuentas();
+    public List<Materias> findAllMaterias();
 	
 	@Query(value = "SELECT cu.id_materia, cu.descripcion, cu.estado from public.materias cu", nativeQuery = true)
     public List<Materias> findAllCatalogoMateria();
 	
 	@Query(value = "SELECT * FROM public.materias WHERE id_materia = ?1", nativeQuery = true)
-    public List<Materias> findMateriaById(Integer id_materia);
+    public Materias findMateriaById(Integer id_materia);
 
 	public List<Materias> findAll(Sort sort);
 

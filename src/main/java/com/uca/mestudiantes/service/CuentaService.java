@@ -11,13 +11,13 @@ public interface CuentaService {
 	
 	public List<Cuenta> findAll() throws DataAccessException;
 
-	public List<Cuenta> findAll(Sort sort);
+	public List<Cuenta> findAllCatalogo()throws DataAccessException;
 
 	public Cuenta findOne(Integer codigo) throws DataAccessException;
 
 	public void save(Cuenta c) throws DataAccessException;
 
-	public void updateCuenta(Cuenta c);
+	public void updateCuenta(Cuenta c) throws DataAccessException;
 	
 	public int insertar(Cuenta c);
 

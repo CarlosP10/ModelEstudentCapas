@@ -13,7 +13,7 @@ public interface MunicipioService {
 
 	public List<Municipio> findAll(Sort sort);
 
-	public Municipio findOne(Integer codigo) throws DataAccessException;
+	public List<Municipio> findbyDpto(Integer codigo) throws DataAccessException;
 
 	public void save(Municipio c) throws DataAccessException;
 
