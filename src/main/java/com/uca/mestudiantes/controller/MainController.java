@@ -1,82 +1,66 @@
 package com.uca.mestudiantes.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.mestudiantes.domain.Cuenta;
 import com.uca.mestudiantes.domain.Expediente;
+import com.uca.mestudiantes.service.CuentaService;
 
 public class MainController {
 
-	// VISTA EXPEDIENTE NUEVO
-	@RequestMapping("/agregarEN")
-	public ModelAndView agregarEN() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("agregarEN");
-		return mav;
-	}
-
-	// VISTA BUSCAR ALUMNO
-	@RequestMapping("/busquedaA")
-	public ModelAndView busquedaA() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("busquedaA");
-		return mav;
-	}
-
-	// VISTA CATALOGO CENTRO ESCOLAR
-	@RequestMapping("/catalogoCE")
-	public ModelAndView catalogoCE() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("catalogoCE");
-		return mav;
-	}
-
-	// VISTA CATALOGO MATERIAS
-	@RequestMapping("/catalogoM")
-	public ModelAndView catalogoM() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("catalogoM");
-		return mav;
-	}
-
-	// VISTA CATALOGO USUARIOS DEL SISTEMA
-	@RequestMapping("/catalogoUS")
-	public ModelAndView catalogoUS() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("catalogoUS");
-		return mav;
-	}
-
-	// VISTA EXPEDIENTE ALUMNO
-	@RequestMapping("/expedienteA")
-	public ModelAndView expedienteA() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("expedienteA");
-		return mav;
-	}
-
-	// VISTA LOGIN
+	@Autowired
+	private CuentaService cuentaService;
+	
 	@RequestMapping("/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
+		Cuenta cuenta = new Cuenta();
+		
+		mav.addObject("error", "");
+		mav.addObject("cuenta", cuenta);
 		mav.setViewName("login");
+		
 		return mav;
+		
 	}
+	
+	@RequestMapping(value="/verificar", method = RequestMethod.POST)
+	public @ResponseBody boolean verificar(@RequestBody Cuenta login) {
 
-	// VISTA MODIFICAR EXPEDIENTE
-	@RequestMapping("/modificarExp")
-	public ModelAndView modificarExp() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("modificarExp");
-		return mav;
-	}
+		try {
+			Cuenta user = cuentaService.findOne((login.getId_cuenta()));
 
-	// VISTA REGISTRARSE
-	@RequestMapping("/register")
-	public ModelAndView register() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("register");
-		return mav;
+
+			if(user != null){
+				String contrasenia = user.getContrasenia();
+				if(contrasenia.equals(login.getContrasenia())){
+					user.setSesion(true);
+
+					try {
+						cuentaService.save(user);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+
+					return true;
+				}
+
+				return false;
+
+			}else{
+				return false;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }
