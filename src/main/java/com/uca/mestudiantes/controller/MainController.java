@@ -3,6 +3,8 @@ package com.uca.mestudiantes.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.mestudiantes.domain.Expediente;
+
 public class MainController {
 
 	// VISTA EXPEDIENTE NUEVO

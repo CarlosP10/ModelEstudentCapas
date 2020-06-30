@@ -7,7 +7,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.uca.mestudiantes.dao.MateriasDAO;
@@ -16,6 +18,11 @@ import com.uca.mestudiantes.domain.Materias;
 
 @Repository
 public class MateriasDAOImpl implements MateriasDAO{
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	private static final String sql = "UPDATE public.materia SET nombres = ?, estado = ?, descripcion = ?";
 
 	@PersistenceContext(unitName = "mestudiantes")
 	private EntityManager entityManager;
@@ -44,6 +51,24 @@ public class MateriasDAOImpl implements MateriasDAO{
 		else { 
 			entityManager.merge(e); 
 		}		
+	}
+
+	@Override
+	public void save(Materias c) throws DataAccessException {
+		if(c.getId_materia() == null) { 
+			entityManager.persist(c); 
+		}
+		else { 
+			entityManager.merge(c); 
+		}
+		
+	}
+
+	@Override
+	public void updateMaterias(Materias c) {
+		Object[] parametros = new Object[] {c.getNombre(), c.getEstado(), c.getDescripcion()};
+		jdbcTemplate.update(sql, parametros);
+		
 	}
 
 }
