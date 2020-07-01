@@ -6,12 +6,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 
 import com.uca.modele.domain.Cuenta;
+import com.uca.modele.domain.Materias;
 
 public interface CuentaService {
 	
 	public List<Cuenta> findAll() throws DataAccessException;
 
 	public List<Cuenta> findAllCatalogo()throws DataAccessException;
+	
+	public List<Cuenta> findAll(Sort sort);
 
 	public Cuenta findOne(Integer codigo) throws DataAccessException;
 

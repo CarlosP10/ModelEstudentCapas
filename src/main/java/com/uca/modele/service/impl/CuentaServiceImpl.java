@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.uca.modele.dao.CuentaDAO;
@@ -57,6 +58,11 @@ public class CuentaServiceImpl implements CuentaService{
 	@Override
 	public List<Cuenta> findAllCatalogo() throws DataAccessException {
 		return cuentaRepository.findAllCatalogoCuenta();
+	}
+
+	@Override
+	public List<Cuenta> findAll(Sort sort) {
+		return cuentaRepository.findAll(sort);
 	}
 
 }
