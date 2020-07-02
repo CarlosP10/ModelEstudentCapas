@@ -5,6 +5,29 @@
 <meta charset="ISO-8859-1">
 <title>Busqueda de Estudiantes</title>
 </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var table = $('#tablaBusquedaA').DataTable( {
+	        "processing": true,
+	        "serverSide": true,
+	        "ajax": "./cargarBusquedaA",
+	        "language": {
+	            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+	        },
+	        "pageLength": 5,
+	        "columnDefs": [ {
+	            "targets": 0,
+	            "data": null,
+	            "defaultContent": "<button class='btn btn-info' title='Editar Alumnos'><i class='fa fa-pencil-alt'></i></button> "
+	        }]
+	    });
+		
+		$('#tablaBusquedaA tbody').on( 'click', 'button', function () {
+	        var data = table.row( $(this).parents('tr') ).data();
+	        	location.href = './editarBusquedaA?id=' + data[0];
+	    } );
+	});
+</script>
 <body>
 	
 	<table class="table table-bordered">
