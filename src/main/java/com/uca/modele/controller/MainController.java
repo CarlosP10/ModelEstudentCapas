@@ -2,6 +2,7 @@ package com.uca.modele.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,17 @@ public class MainController {
 
 	@Autowired
 	private CuentaService cuentaService;
+	
+	@RequestMapping("/index")
+	public ModelAndView index(@CookieValue(value = "data", defaultValue = "-") String data) {
+
+		System.out.println(data);
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("index");
+
+		return mav;
+	}
 	
 	@RequestMapping("/login")
 	public ModelAndView login() {
