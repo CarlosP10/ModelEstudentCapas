@@ -26,7 +26,7 @@ public class AdminController {
 	@Autowired
 	CuentaService cuentaService;
 	
-	@RequestMapping("verCatalogoEscuela")
+	@RequestMapping("/verCatalogoEscuela")
 	public @ResponseBody List<Escuelas> verEscuelas(){
 		Sort sort = Sort.by(Direction.ASC, "id_escuela");
 		return escuelasService.findAll(sort);

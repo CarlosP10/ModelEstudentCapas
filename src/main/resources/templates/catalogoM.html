@@ -14,12 +14,12 @@
 			<th>Descripcion</th>
 			<th>Estado</th>
 		</thead>
-		<th:block th:each="materia, row: ${materias}">
+		<th:block th:each="materias, row: ${materiass}">
 			<tr>
-				<td th:text="${materia.accion}"/>
-				<td th:text="${materia.codigo}"/>
-				<td th:text="${materia.descripcion}"/>
-				<td th:text="${materia.estado}"/>
+				<td th:text="${materias.accion}"/>
+				<td th:text="${materias.codigo}"/>
+				<td th:text="${materias.descripcion}"/>
+				<td th:text="${materias.estado}"/>
 			</tr>
 		</th:block>
 	</table>
