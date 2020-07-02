@@ -1,4 +1,4 @@
-package com.uca.modele.controller;
+package com.uca.modele.controller.catalogos;
 
 import java.util.List;
 
@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Controller;
 
 import com.uca.modele.dao.MateriasDAO;
 import com.uca.modele.domain.Materias;
 import com.uca.modele.service.MateriasService;
 
+@Controller
 public class MateriaController {
 
 	@Autowired
