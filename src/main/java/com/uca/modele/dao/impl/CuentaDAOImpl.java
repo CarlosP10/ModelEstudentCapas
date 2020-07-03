@@ -64,7 +64,7 @@ public class CuentaDAOImpl implements CuentaDAO{
 
 	@Override
 	public void updateCuenta(Cuenta c) {
-		Object[] parametros = new Object[] {c.getNombre(), c.getApellido(), c.getFecha_nac(), c.getEdad(), c.getId_dpto(), c.getId_municipio(), c.getEstado(), c.getNombre_usuario(), c.getContrasenia(), c.getId_tipo(), c.getSesion()};
+		Object[] parametros = new Object[] {c.getNombre(), c.getApellido(), c.getFecha_nac(), c.getEdad(), c.getId_dpto(), c.getcMunicipio(), c.getEstado(), c.getNombre_usuario(), c.getContrasenia(), c.getId_tipo(), c.getSesion()};
 		jdbcTemplate.update(sql, parametros);
 		
 	}

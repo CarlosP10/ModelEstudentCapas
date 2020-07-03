@@ -9,21 +9,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema = "public", name = "departamento")
 public class Departamento {
+	
 	@Id
+    @GeneratedValue(generator="departamento_id_dpto_seq", strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "departamento_id_dpto_seq", sequenceName = "public.departamento_id_dpto_seq", allocationSize = 1)
 	@Column(name = "id_dpto")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_dpto;
 
+	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
+    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "nombre")
 	private String nombre;
 	
-//	@OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
-//	private List<Escuelas> escuelas;
+	@OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
+	private List<Escuelas> escuelas;
+
+	public Departamento() {
+	}
+
+	public Departamento(Integer id_dpto,
+			@Size(min = 1, max = 15, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String nombre,
+			List<Escuelas> escuelas) {
+		super();
+		this.id_dpto = id_dpto;
+		this.nombre = nombre;
+		this.escuelas = escuelas;
+	}
 
 	public Integer getId_dpto() {
 		return id_dpto;
@@ -41,14 +60,14 @@ public class Departamento {
 		this.nombre = nombre;
 	}
 
-//	public List<Escuelas> getEscuelas() {
-//		return escuelas;
-//	}
-//
-//	public void setEscuelas(List<Escuelas> escuelas) {
-//		this.escuelas = escuelas;
-//	}
-
-	public Departamento() {
+	public List<Escuelas> getEscuelas() {
+		return escuelas;
 	}
+
+	public void setEscuelas(List<Escuelas> escuelas) {
+		this.escuelas = escuelas;
+	}
+	
+	
 }
+

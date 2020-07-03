@@ -8,18 +8,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import com.uca.modele.domain.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema = "public", name = "materiaxalumno")
 public class MateriasxAlumno {
+	
 	@Id
+	@GeneratedValue(generator = "materiaxalumno_id_materiaexp_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "materiaxalumno_id_materiaexp_seq", sequenceName = "public.materiaxalumno_id_materiaexp_seq", allocationSize = 1)
 	@Column(name = "id_materiaexp")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_materiaexp;
-		
+	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_expediente")
 	private Expediente id_expediente;
@@ -32,13 +36,30 @@ public class MateriasxAlumno {
 	@JoinColumn(name = "id_materia")
 	private Materias id_materia;
 	
-	@NotEmpty(message = "No puede estar vacio")
+    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "anio")
 	private Integer anio;
 	
-	@NotEmpty(message = "No puede estar vacio")
+    @Size(min=0, message = "El nombre debe tener entre 1 y 50 caracteres.")
+    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "nota")
 	private Double nota;
+    
+    public MateriasxAlumno() {
+
+    }
+
+	public MateriasxAlumno(Integer id_materiaexp, Expediente id_expediente, Ciclo id_ciclo, Materias id_materia,
+			@NotBlank(message = "Este campo no puede estar vacío.") Integer anio,
+			@Size(min = 0, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") Double nota) {
+		super();
+		this.id_materiaexp = id_materiaexp;
+		this.id_expediente = id_expediente;
+		this.id_ciclo = id_ciclo;
+		this.id_materia = id_materia;
+		this.anio = anio;
+		this.nota = nota;
+	}
 
 	public Integer getId_materiaexp() {
 		return id_materiaexp;
@@ -87,9 +108,9 @@ public class MateriasxAlumno {
 	public void setNota(Double nota) {
 		this.nota = nota;
 	}
-
-	public MateriasxAlumno() {}
-	
-	
+    
+    
+    
 
 }
+

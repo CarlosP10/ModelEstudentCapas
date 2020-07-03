@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -12,9 +13,11 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(schema = "public", name = "materias")
 public class Materias {
+
 	@Id
+    @GeneratedValue(generator="materias_id_materia_seq", strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "materias_id_materia_seq", sequenceName = "public.materias_id_materia_seq", allocationSize = 1)
 	@Column(name = "id_materia")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_materia;
 	
 	@NotEmpty(message = "No puede estar vacio")
@@ -31,6 +34,20 @@ public class Materias {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
 	@Column(name = "descripcion")
 	private String descripcion;
+	
+	public Materias() {
+    }
+
+	public Materias(Integer id_materia,
+			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String nombre,
+			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Boolean estado,
+			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String descripcion) {
+		super();
+		this.id_materia = id_materia;
+		this.nombre = nombre;
+		this.estado = estado;
+		this.descripcion = descripcion;
+	}
 
 	public Integer getId_materia() {
 		return id_materia;
@@ -63,9 +80,7 @@ public class Materias {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public Materias() {}
 	
 	
-
+	
 }
