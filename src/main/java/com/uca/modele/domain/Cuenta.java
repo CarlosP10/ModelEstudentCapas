@@ -31,7 +31,7 @@ public class Cuenta {
     @GeneratedValue(generator="cuenta_id_cuenta_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "cuenta_id_cuenta_seq", sequenceName = "public.cuenta_id_cuenta_seq", allocationSize = 1)
     @Column(name = "id_cuenta")
-	private Integer id_cuenta;
+	private Integer idCuenta;
 	
 	@Column(name = "nombre")
     @Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
@@ -47,14 +47,14 @@ public class Cuenta {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "La fecha de nacimiento debe ser anterior a la fecha de ahora.")
     @NotNull(message = "Este campo no puede estar vacío.")
-	private Date fecha_nac;
+	private Date fechaNac;
 	
 	@Column(name = "edad")
 	private Integer edad; //calcular edad
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_dpto")
-	private Departamento id_dpto;
+	private Departamento idDpto;
 	
 	@Transient
     private Integer cDepto;
@@ -77,7 +77,7 @@ public class Cuenta {
 	@Column(name = "nombre_usuario")
     @Size(min=1, max=15, message = "El usuario debe tener entre 1 y 15 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
-	private String nombre_usuario;
+	private String nombreUsuario;
 	
 	@Column(name = "contrasenia")
     @Size(max=50, message = "La contraseña no debe tener más de 50 caracteres.")
@@ -87,7 +87,7 @@ public class Cuenta {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo")
-	private TipoUsuario id_tipo;
+	private TipoUsuario idTipo;
 	
 	@Transient
     private Integer cTipo;
@@ -101,6 +101,18 @@ public class Cuenta {
     @NotBlank(message = "Este campo no puede estar vacío.")
 	private String descripcion;
 	
+	@Column(name = "cuenta_cod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer numeroCod;
+	
+	public Integer getNumeroCod() {
+		return numeroCod;
+	}
+
+	public void setNumeroCod(Integer numeroCod) {
+		this.numeroCod = numeroCod;
+	}
+
 	public Integer getcDepto() {
 		return cDepto;
 	}
@@ -133,12 +145,12 @@ public class Cuenta {
 
     }
 
-	public String getNombre_usuario() {
-		return nombre_usuario;
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public void setNombre_usuario(String nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setNombreUsuario(String nombre_usuario) {
+		this.nombreUsuario = nombre_usuario;
 	}
 
 	public String getNombre() {
@@ -157,20 +169,28 @@ public class Cuenta {
 		this.apellido = apellido;
 	}
 
-	public Date getFecha_nac() {
-		return fecha_nac;
+	public Date getFechaNac() {
+		return fechaNac;
 	}
 
-	public void setFecha_nac(Date fecha_nac) {
-		this.fecha_nac = fecha_nac;
+	public void setFechaNac(Date fecha_nac) {
+		this.fechaNac = fecha_nac;
 	}
 
-	public Departamento getId_dpto() {
-		return id_dpto;
+	public Departamento getIdDpto() {
+		return idDpto;
 	}
 
-	public void setId_dpto(Departamento id_dpto) {
-		this.id_dpto = id_dpto;
+	public void setIdDpto(Departamento id_dpto) {
+		this.idDpto = id_dpto;
+	}
+
+	public Integer getIdCuenta() {
+		return idCuenta;
+	}
+
+	public void setIdCuenta(Integer idCuenta) {
+		this.idCuenta = idCuenta;
 	}
 
 	public Municipio getMunicipio() {
@@ -213,12 +233,12 @@ public class Cuenta {
 		this.contrasenia = contrasenia;
 	}
 
-	public TipoUsuario getId_tipo() {
-		return id_tipo;
+	public TipoUsuario getIdTipo() {
+		return idTipo;
 	}
 
-	public void setId_tipo(TipoUsuario id_tipo) {
-		this.id_tipo = id_tipo;
+	public void setIdTipo(TipoUsuario id_tipo) {
+		this.idTipo = id_tipo;
 	}
 
 	public Boolean getSesion() {
@@ -228,19 +248,11 @@ public class Cuenta {
 	public void setSesion(Boolean sesion) {
 		this.sesion = sesion;
 	}
-
-	public Integer getId_cuenta() {
-		return id_cuenta;
-	}
-
-	public void setId_cuenta(Integer id_cuenta) {
-		this.id_cuenta = id_cuenta;
-	}
 	
 	public Integer getEdad(){
 
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(getFecha_nac().getTime());
+        c.setTimeInMillis(getFechaNac().getTime());
 
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -252,26 +264,4 @@ public class Cuenta {
         return Period.between(bd, now).getYears();
 
     }
-	
-	@Override
-    public String toString() {
-        return "Usuario{" +
-                "id_cuenta=" + id_cuenta +
-                ", nombre_usuario='" + nombre_usuario + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", fecha_nac=" + fecha_nac +
-                ", municipio=" + municipio +
-                ", cMunicipio=" + cMunicipio +
-                ", direccion='" + direccion + '\'' +
-                ", estado=" + estado +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", id_tipo=" + id_tipo +
-                ", sesion=" + sesion +
-                '}';
-    }
-	
-	
-
-	
 }

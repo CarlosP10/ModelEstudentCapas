@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,7 @@ public class MateriasServiceImpl implements MateriasService{
 
 	@Override
 	public List<Materias> findAll() throws DataAccessException {
-		return materiasRepository.findAllMaterias();
+		return materiasRepository.findAll();
 	}
 
 	@Override
@@ -39,7 +41,7 @@ public class MateriasServiceImpl implements MateriasService{
 
 	@Override
 	public Materias findOne(Integer codigo) throws DataAccessException {
-		return materiasRepository.findMateriaById(codigo);
+		return materiasRepository.getOne(codigo);
 	}
 
 	@Override
@@ -63,6 +65,16 @@ public class MateriasServiceImpl implements MateriasService{
 	@Override
 	public List<Materias> findAllCatalogo() throws DataAccessException {
 		return materiasRepository.findAllCatalogoMateria();
+	}
+
+	@Override
+	public Page<Materias> findAll(Pageable page) throws DataAccessException {
+		return materiasRepository.findAll(page);
+	}
+
+	@Override
+	public Long countAll() {
+		return materiasRepository.count();
 	}
 
 }

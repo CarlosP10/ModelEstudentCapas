@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.uca.modele.dao.EscuelasDAO;
@@ -28,7 +30,7 @@ public class EscuelasServiceImpl implements EscuelasService{
 
 	@Override
 	public List<Escuelas> findAll() throws DataAccessException {
-		return escuelasRepository.findAllEscuelas();
+		return escuelasRepository.findAll();
 	}
 
 	@Override
@@ -67,6 +69,16 @@ public class EscuelasServiceImpl implements EscuelasService{
 	@Override
 	public List<Escuelas> findOnebyDpto(Integer codigo) throws DataAccessException {
 		return escuelasRepository.findEscuelaByDepartamento(codigo);
+	}
+
+	@Override
+	public Page<Escuelas> findAll(Pageable page) throws DataAccessException {
+		return escuelasRepository.findAll(page);
+	}
+
+	@Override
+	public Long countAll() {
+		return escuelasRepository.count();
 	}
 
 }

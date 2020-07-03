@@ -44,7 +44,7 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 
 	@Transactional
 	public void insertar(Escuelas e) throws DataAccessException {
-		if(e.getId_escuela() == null) { 
+		if(e.getIdEscuela() == null) { 
 			entityManager.persist(e);
 		}
 		else { 
@@ -55,7 +55,7 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 
 	@Override
 	public void save(Escuelas c) throws DataAccessException {
-		if(c.getId_escuela() == null) { 
+		if(c.getIdEscuela() == null) { 
 			entityManager.persist(c); 
 		}
 		else { 

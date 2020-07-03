@@ -41,7 +41,7 @@ public class CuentaController {
 
 	@RequestMapping("/verCuenta")
 	public @ResponseBody List<Cuenta> verCuenta() {
-		Sort sort = Sort.by(Direction.ASC, "id_cuenta");
+		Sort sort = Sort.by(Direction.ASC, "idCuenta");
 		return cuentaService.findAll(sort);
 	}
 	
@@ -49,12 +49,12 @@ public class CuentaController {
 	public @ResponseBody TableDTO cargarCuenta(@RequestParam Integer draw,
 			@RequestParam Integer start, @RequestParam Integer length, 
 			@RequestParam(value="search[value]", required = false) String search) {
-		Page<Cuenta> cuentas = cuentaService.findAll(PageRequest.of(start/length, length, Sort.by(Direction.ASC, "id_cuenta")));
+		Page<Cuenta> cuentas = cuentaService.findAll(PageRequest.of(start/length, length, Sort.by(Direction.ASC, "idCuenta")));
 		
 		List<String[]> data = new ArrayList<>();
 		
 		for(Cuenta u: cuentas) {
-			data.add(new String[] {u.getId_cuenta().toString(),
+			data.add(new String[] {u.getIdCuenta().toString(), u.getNumeroCod().toString(),
 					u.getDescripcion(), u.getEstado() == true ? "Activo" : "Inactivo"});
 		}
 		

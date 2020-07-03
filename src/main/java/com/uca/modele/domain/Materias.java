@@ -18,7 +18,7 @@ public class Materias {
     @GeneratedValue(generator="materias_id_materia_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "materias_id_materia_seq", sequenceName = "public.materias_id_materia_seq", allocationSize = 1)
 	@Column(name = "id_materia")
-	private Integer id_materia;
+	private Integer idMateria;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
@@ -35,14 +35,26 @@ public class Materias {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
+	@Column(name = "mat_cod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer numeroCod;
+	
+	public Integer getNumeroCod() {
+		return numeroCod;
+	}
+
+	public void setNumeroCod(Integer numeroCod) {
+		this.numeroCod = numeroCod;
+	}
+	
 	public Materias() {}
 
 	public Integer getId_materia() {
-		return id_materia;
+		return idMateria;
 	}
 
 	public void setId_materia(Integer id_materia) {
-		this.id_materia = id_materia;
+		this.idMateria = id_materia;
 	}
 
 	public String getNombre() {

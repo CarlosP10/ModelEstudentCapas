@@ -42,7 +42,7 @@ public class CuentaDAOImpl implements CuentaDAO{
 	}
 
 	public void insertar(Cuenta e) throws DataAccessException {
-		if(e.getId_cuenta() == null) { 
+		if(e.getIdCuenta() == null) { 
 			entityManager.persist(e);
 		}
 		else { 
@@ -51,7 +51,7 @@ public class CuentaDAOImpl implements CuentaDAO{
 	}
 
 	public void save(Cuenta c) throws DataAccessException {
-		if(c.getId_cuenta() == null) { 
+		if(c.getIdCuenta() == null) { 
 			entityManager.persist(c); 
 		}
 		else { 

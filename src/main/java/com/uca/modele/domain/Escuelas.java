@@ -26,7 +26,7 @@ public class Escuelas {
     @GeneratedValue(generator="escuelas_id_escuela_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "escuelas_id_escuela_seq", sequenceName = "public.escuelas_id_escuela_seq", allocationSize = 1)
     @Column(name = "id_escuela")
-	private Integer id_escuela;
+	private Integer idEscuela;
 	
 	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
@@ -52,27 +52,26 @@ public class Escuelas {
     @Transient
     private Integer cDpto;
     
-    @Override
-    public String toString() {
-        return "Escuela{" +
-                "id:escuela=" + id_escuela +
-                ", nombre='" + nombre + '\'' +
-                ", estado=" + estado +
-                ", id_dpto=" + municipio +
-                ", descripcion=" + descripcion +
-                ", estudiantes=" + expedientes +
-                ", cDpto=" + cDpto +
-                '}';
-    }
+    @Column(name = "escuela_cod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer numeroCod;
+	
+	public Integer getNumeroCod() {
+		return numeroCod;
+	}
+
+	public void setNumeroCod(Integer numeroCod) {
+		this.numeroCod = numeroCod;
+	}
 
     public Escuelas() {}
     
-	public Integer getId_escuela() {
-		return id_escuela;
+	public Integer getIdEscuela() {
+		return idEscuela;
 	}
 
 	public void setId_escuela(Integer id_escuela) {
-		this.id_escuela = id_escuela;
+		this.idEscuela = id_escuela;
 	}
 
 	public String getNombre() {

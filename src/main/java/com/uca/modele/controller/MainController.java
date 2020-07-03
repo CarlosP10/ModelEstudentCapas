@@ -35,7 +35,7 @@ public class MainController {
 	public @ResponseBody boolean verificar(@RequestBody Cuenta login) {
 
 		try {
-			Cuenta user = cuentaService.findOne((login.getId_cuenta()));
+			Cuenta user = cuentaService.findOne((login.getIdCuenta()));
 
 
 			if(user != null){
