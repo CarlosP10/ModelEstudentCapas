@@ -41,7 +41,7 @@ public class MateriaController {
 		ModelAndView mav = new ModelAndView();
 		Materias c = materiasService.findOne(id);
 		mav.addObject("materias", c);
-		mav.setViewName("FALTA HACER EL HTML DE EDITAR MATERIAS");
+		mav.setViewName("modificarMateria");
 		return mav;
 	}
 

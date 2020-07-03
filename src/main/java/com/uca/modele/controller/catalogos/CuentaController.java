@@ -36,15 +36,6 @@ public class CuentaController {
 		return cuentaService.findAll(sort);
 	}
 
-	@RequestMapping("/editarMateria")
-	public ModelAndView buscar(@RequestParam Integer id) {
-		ModelAndView mav = new ModelAndView();
-		Cuenta c = cuentaService.findOne(id);
-		mav.addObject("cuenta", c);
-		mav.setViewName("FALTA HACER EL HTML DE EDITAR Cuenta");
-		return mav;
-	}
-
 	@RequestMapping("/guardarCuenta")
 	public ModelAndView guardarCuenta(@ModelAttribute Cuenta cuenta) {
 		ModelAndView mav = new ModelAndView();

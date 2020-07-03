@@ -41,7 +41,7 @@ public class EscuelaController {
 		ModelAndView mav = new ModelAndView();
 		Escuelas c = escuelasService.findOne(id);
 		mav.addObject("escuelas", c);
-		mav.setViewName("FALTA HACER EL HTML DE EDITAR Escuelas");
+		mav.setViewName("modificarCE");
 		return mav;
 	}
 
