@@ -18,17 +18,6 @@ public class MainController {
 	@Autowired
 	private CuentaService cuentaService;
 	
-	@RequestMapping("/index")
-	public ModelAndView index(@CookieValue(value = "data", defaultValue = "-") String data) {
-
-		System.out.println(data);
-		ModelAndView mav = new ModelAndView();
-
-		mav.setViewName("index");
-
-		return mav;
-	}
-	
 	@RequestMapping("/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();

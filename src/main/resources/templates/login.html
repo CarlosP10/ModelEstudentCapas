@@ -9,10 +9,11 @@
 			<!-- Default form login -->
 <form class="text-center border border-light p-5" action="@{/login}">
 
+	<h1>Modulo de Administracion de Estudiantes </h1>
     <p class="h4 mb-4">Iniciar Sesion</p>
 
     <!-- Email -->
-    <input type="text" id="nombre" class="form-control mb-4" placeholder="Usuario" name="nombre">
+    <input type="text" id="nombre_usuario" class="form-control mb-4" placeholder="Usuario" name="nombre_usuario">
 
     <!-- Password -->
     <input type="password" id="contrasenia" class="form-control mb-4" placeholder="Contraseña" name="contrasenia">
@@ -27,12 +28,12 @@
         </div>
         <div>
             <!-- Forgot password -->
-            <a href="">Forgot password?</a>
+            <a href="@{/registrarse}">Registrarse</a>
         </div>
     </div>
 
     <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesion</button>
+    <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesion</button>    
     </p>
 
 </form>
