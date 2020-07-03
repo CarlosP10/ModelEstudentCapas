@@ -41,7 +41,6 @@ public class CuentaDAOImpl implements CuentaDAO{
 		return cuenta;
 	}
 
-	@Transactional
 	public void insertar(Cuenta e) throws DataAccessException {
 		if(e.getId_cuenta() == null) { 
 			entityManager.persist(e);
@@ -51,7 +50,6 @@ public class CuentaDAOImpl implements CuentaDAO{
 		}		
 	}
 
-	@Override
 	public void save(Cuenta c) throws DataAccessException {
 		if(c.getId_cuenta() == null) { 
 			entityManager.persist(c); 
@@ -59,13 +57,6 @@ public class CuentaDAOImpl implements CuentaDAO{
 		else { 
 			entityManager.merge(c); 
 		}
-		
-	}
-
-	@Override
-	public void updateCuenta(Cuenta c) {
-		Object[] parametros = new Object[] {c.getNombre(), c.getApellido(), c.getFecha_nac(), c.getEdad(), c.getId_dpto(), c.getcMunicipio(), c.getEstado(), c.getNombre_usuario(), c.getContrasenia(), c.getId_tipo(), c.getSesion()};
-		jdbcTemplate.update(sql, parametros);
 		
 	}
 }

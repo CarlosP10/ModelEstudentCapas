@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(schema = "public", name = "escuela")
+@Table(schema = "public", name = "escuelas")
 public class Escuelas {
 	
 	@Id
@@ -43,8 +43,8 @@ public class Escuelas {
 	private String descripcion; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_dpto")
-	private Integer id_dpto; 
+    @JoinColumn(name = "id_municipio")
+	private Municipio municipio; 
 	
 	@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
     private List<Expediente> expedientes;
@@ -58,29 +58,15 @@ public class Escuelas {
                 "id:escuela=" + id_escuela +
                 ", nombre='" + nombre + '\'' +
                 ", estado=" + estado +
-                ", id_dpto=" + id_dpto +
+                ", id_dpto=" + municipio +
                 ", descripcion=" + descripcion +
                 ", estudiantes=" + expedientes +
                 ", cDpto=" + cDpto +
                 '}';
     }
 
-    public Escuelas() {
-
-    }
-
-	public Escuelas(Integer id_escuela, String nombre, Boolean estado, String descripcion, Integer id_dpto,
-			List<Expediente> expedientes, Integer cDpto) {
-		super();
-		this.id_escuela = id_escuela;
-		this.nombre = nombre;
-		this.estado = estado;
-		this.descripcion = descripcion;
-		this.id_dpto = id_dpto;
-		this.expedientes = expedientes;
-		this.cDpto = cDpto;
-	}
-
+    public Escuelas() {}
+    
 	public Integer getId_escuela() {
 		return id_escuela;
 	}
@@ -113,12 +99,20 @@ public class Escuelas {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getId_dpto() {
-		return id_dpto;
+	public Municipio getMunicipio() {
+		return municipio;
 	}
 
-	public void setId_dpto(Integer id_dpto) {
-		this.id_dpto = id_dpto;
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
+	}
+
+	public List<Expediente> getExpedientes() {
+		return expedientes;
+	}
+
+	public void setExpedientes(List<Expediente> expedientes) {
+		this.expedientes = expedientes;
 	}
 
 	public List<Expediente> getEstudiantes() {

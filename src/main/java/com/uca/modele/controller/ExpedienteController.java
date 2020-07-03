@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ import com.uca.modele.domain.Expediente;
 import com.uca.modele.domain.Materias;
 import com.uca.modele.service.ExpedienteService;
 
-
+@Controller
 public class ExpedienteController {
 	
 	@Autowired

@@ -25,13 +25,13 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(schema = "public", name = "usuario")
+@Table(schema = "public", name = "cuenta")
 public class Cuenta {
-
-	@Column(name = "nombre_usuario")
-    @Size(min=1, max=15, message = "El usuario debe tener entre 1 y 15 caracteres.")
-    @NotBlank(message = "Este campo no puede estar vacío.")
-	private String nombre_usuario;
+	@Id
+    @GeneratedValue(generator="cuenta_id_cuenta_seq", strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "cuenta_id_cuenta_seq", sequenceName = "public.cuenta_id_cuenta_seq", allocationSize = 1)
+    @Column(name = "id_cuenta")
+	private Integer id_cuenta;
 	
 	@Column(name = "nombre")
     @Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
@@ -49,9 +49,15 @@ public class Cuenta {
     @NotNull(message = "Este campo no puede estar vacío.")
 	private Date fecha_nac;
 	
+	@Column(name = "edad")
+	private Integer edad; //calcular edad
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_dpto")
-	private Integer id_dpto;
+	private Departamento id_dpto;
+	
+	@Transient
+    private Integer cDepto;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_municipio")
@@ -63,10 +69,15 @@ public class Cuenta {
 	@Column(name = "direccion")
     @Size(min=1, max=15, message = "La dirección debe tener entre 1 y 200 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
-	private String direccion;
+	private String direccion;	
 	
 	@Column(name = "estado")
 	private Boolean estado;
+	
+	@Column(name = "nombre_usuario")
+    @Size(min=1, max=15, message = "El usuario debe tener entre 1 y 15 caracteres.")
+    @NotBlank(message = "Este campo no puede estar vacío.")
+	private String nombre_usuario;
 	
 	@Column(name = "contrasenia")
     @Size(max=50, message = "La contraseña no debe tener más de 50 caracteres.")
@@ -76,48 +87,51 @@ public class Cuenta {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo")
-	private Integer id_tipo;
+	private TipoUsuario id_tipo;
+	
+	@Transient
+    private Integer cTipo;
 	
 	@Column(name = "sesion")
 	private Boolean sesion; 
 	
-	@Id
-    @GeneratedValue(generator="cuenta_id_cuenta_seq", strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "cuenta_id_cuenta_seq", sequenceName = "public.cuenta_id_cuenta_seq", allocationSize = 1)
-    @Column(name = "id_cuenta")
-	private Integer id_cuenta;
+	@Column(name = "descripcion")
+    @Size(max=50, message = "La contraseña no debe tener más de 50 caracteres.")
+    @Size(min=8, message = "La contraseña debe tener como mínimo 8 caracteres.")
+    @NotBlank(message = "Este campo no puede estar vacío.")
+	private String descripcion;
 	
+	public Integer getcDepto() {
+		return cDepto;
+	}
+
+	public void setcDepto(Integer cDepto) {
+		this.cDepto = cDepto;
+	}
+
+	public Integer getcTipo() {
+		return cTipo;
+	}
+
+	public void setcTipo(Integer cTipo) {
+		this.cTipo = cTipo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+
 	public Cuenta() {
 
     }
-
-	public Cuenta(
-			@Size(min = 1, max = 15, message = "El usuario debe tener entre 1 y 15 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String nombre_usuario,
-			@Size(min = 1, max = 15, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String nombre,
-			@Size(min = 1, max = 15, message = "El apellido debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String apellido,
-			@Past(message = "La fecha de nacimiento debe ser anterior a la fecha de ahora.") @NotNull(message = "Este campo no puede estar vacío.") Date fecha_nac,
-			Integer id_dpto, Municipio municipio, Integer cMunicipio,
-			@Size(min = 1, max = 15, message = "La dirección debe tener entre 1 y 200 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String direccion,
-			Boolean estado,
-			@Size(max = 50, message = "La contraseña no debe tener más de 50 caracteres.") @Size(min = 8, message = "La contraseña debe tener como mínimo 8 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String contrasenia,
-			Integer id_tipo, Boolean sesion, Integer id_usuario) {
-		super();
-		this.nombre_usuario = nombre_usuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fecha_nac = fecha_nac;
-		this.id_dpto = id_dpto;
-		this.municipio = municipio;
-		this.cMunicipio = cMunicipio;
-		this.direccion = direccion;
-		this.estado = estado;
-		this.contrasenia = contrasenia;
-		this.id_tipo = id_tipo;
-		this.sesion = sesion;
-		this.id_cuenta = id_cuenta;
-	}
-
-
 
 	public String getNombre_usuario() {
 		return nombre_usuario;
@@ -151,11 +165,11 @@ public class Cuenta {
 		this.fecha_nac = fecha_nac;
 	}
 
-	public Integer getId_dpto() {
+	public Departamento getId_dpto() {
 		return id_dpto;
 	}
 
-	public void setId_dpto(Integer id_dpto) {
+	public void setId_dpto(Departamento id_dpto) {
 		this.id_dpto = id_dpto;
 	}
 
@@ -199,11 +213,11 @@ public class Cuenta {
 		this.contrasenia = contrasenia;
 	}
 
-	public Integer getId_tipo() {
+	public TipoUsuario getId_tipo() {
 		return id_tipo;
 	}
 
-	public void setId_tipo(Integer id_tipo) {
+	public void setId_tipo(TipoUsuario id_tipo) {
 		this.id_tipo = id_tipo;
 	}
 

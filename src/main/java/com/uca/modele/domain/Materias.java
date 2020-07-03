@@ -35,19 +35,7 @@ public class Materias {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	public Materias() {
-    }
-
-	public Materias(Integer id_materia,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String nombre,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Boolean estado,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String descripcion) {
-		super();
-		this.id_materia = id_materia;
-		this.nombre = nombre;
-		this.estado = estado;
-		this.descripcion = descripcion;
-	}
+	public Materias() {}
 
 	public Integer getId_materia() {
 		return id_materia;

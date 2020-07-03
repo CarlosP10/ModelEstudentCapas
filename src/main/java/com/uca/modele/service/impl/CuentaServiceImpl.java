@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -26,27 +29,18 @@ public class CuentaServiceImpl implements CuentaService{
 	
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
-
-	@Override
+	
 	public List<Cuenta> findAll() throws DataAccessException {
 		return cuentaRepository.findAllCuentas();
 	}
 
-	@Override
 	public Cuenta findOne(Integer codigo) throws DataAccessException {
 		return cuentaRepository.findCuentateById(codigo);
 	}
 
-	@Override
+	@Transactional
 	public void save(Cuenta c) throws DataAccessException {
-		 cuentaDao.save(c);
-		
-	}
-
-	@Override
-	public void updateCuenta(Cuenta c) throws DataAccessException {
-		 cuentaDao.updateCuenta(c);
-		
+		 cuentaDao.save(c);		
 	}
 
 	@Override
@@ -60,9 +54,16 @@ public class CuentaServiceImpl implements CuentaService{
 		return cuentaRepository.findAllCatalogoCuenta();
 	}
 
-	@Override
 	public List<Cuenta> findAll(Sort sort) {
 		return cuentaRepository.findAll(sort);
+	}
+
+	public Page<Cuenta> findAll(Pageable page) throws DataAccessException {
+		return cuentaRepository.findAll(page);
+	}
+
+	public Long countAll() {
+		return cuentaRepository.count();
 	}
 
 }

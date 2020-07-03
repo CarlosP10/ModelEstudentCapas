@@ -71,7 +71,7 @@ public class Expediente {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_escuela")
-	private Escuelas id_escuela;
+	private Escuelas escuela;
 
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
@@ -82,42 +82,42 @@ public class Expediente {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "nombre_madre")
 	private String nombre_madre;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_municipio")
+	private Municipio municipio;
 
-	@OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
+	public Escuelas getEscuela() {
+		return escuela;
+	}
+
+	public void setEscuela(Escuelas escuela) {
+		this.escuela = escuela;
+	}
+
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
+	}
+
+	public Integer getcEscuela() {
+		return cEscuela;
+	}
+
+	public void setcEscuela(Integer cEscuela) {
+		this.cEscuela = cEscuela;
+	}
+
+	@OneToMany(mappedBy = "expediente", fetch = FetchType.LAZY)
 	private List<MateriasxAlumno> materiasxEstudiantes;
 	
 	@Transient
     private Integer cEscuela;
 
-	public Expediente() {
-	}
-
-	public Expediente(Integer id_expediente,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String nombres,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String apellidos,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Date fecha_nacimiento,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Integer edad,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String direccion,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Integer telefono_fijo,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") Integer telefono_movil,
-			Escuelas id_escuela,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String nombre_padre,
-			@NotEmpty(message = "No puede estar vacio") @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres") String nombre_madre,
-			List<MateriasxAlumno> materiasxEstudiantes) {
-		super();
-		this.id_expediente = id_expediente;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.fecha_nacimiento = fecha_nacimiento;
-		this.edad = edad;
-		this.direccion = direccion;
-		this.telefono_fijo = telefono_fijo;
-		this.telefono_movil = telefono_movil;
-		this.id_escuela = id_escuela;
-		this.nombre_padre = nombre_padre;
-		this.nombre_madre = nombre_madre;
-		this.materiasxEstudiantes = materiasxEstudiantes;
-	}
+	public Expediente() {}
 
 	public Integer getId_expediente() {
 		return id_expediente;
@@ -194,11 +194,11 @@ public class Expediente {
 	}
 
 	public Escuelas getId_escuela() {
-		return id_escuela;
+		return escuela;
 	}
 
 	public void setId_escuela(Escuelas id_escuela) {
-		this.id_escuela = id_escuela;
+		this.escuela = id_escuela;
 	}
 
 	public String getNombre_padre() {
@@ -235,7 +235,7 @@ public class Expediente {
                 ", direccion='" + direccion + '\'' +
                 ", telefono_movil='" + telefono_movil + '\'' +
                 ", telefono_fijo='" + telefono_fijo + '\'' +
-                ", id_escuela=" + id_escuela +
+                ", id_escuela=" + escuela +
                 ", nombre_madre='" + nombre_madre + '\'' +
                 ", nombre_padre='" + nombre_padre + '\'' +
                 ", materiasxEstudiantes=" + materiasxEstudiantes +

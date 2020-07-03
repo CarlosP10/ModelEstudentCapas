@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -33,7 +34,10 @@ public class Municipio {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_dpto")
-	private Integer id_dpto; 
+	private Departamento id_dpto; 
+	
+	@Transient
+    private Integer cDepto;
 	
 	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY)
 	private List<Cuenta> cuentas;
@@ -41,18 +45,33 @@ public class Municipio {
 	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY)
 	private List<Escuelas> escuelas;
 	
-	public Municipio() {
-
+	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY)
+	private List<Expediente> expediente;
+	
+	public List<Expediente> getExpediente() {
+		return expediente;
 	}
 
-	public Municipio(Integer id_municipio, String nombre, Integer id_dpto, List<Cuenta> cuentas,
-			List<Escuelas> escuelas) {
-		super();
-		this.id_municipio = id_municipio;
-		this.nombre = nombre;
-		this.id_dpto = id_dpto;
+	public void setExpediente(List<Expediente> expediente) {
+		this.expediente = expediente;
+	}
+
+	public Municipio() {}
+
+	public Integer getcDepto() {
+		return cDepto;
+	}
+
+	public void setcDepto(Integer cDepto) {
+		this.cDepto = cDepto;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
-		this.escuelas = escuelas;
 	}
 
 	public Integer getId_municipio() {
@@ -71,11 +90,11 @@ public class Municipio {
 		this.nombre = nombre;
 	}
 
-	public Integer getId_dpto() {
+	public Departamento getId_dpto() {
 		return id_dpto;
 	}
 
-	public void setId_dpto(Integer id_dpto) {
+	public void setId_dpto(Departamento id_dpto) {
 		this.id_dpto = id_dpto;
 	}
 

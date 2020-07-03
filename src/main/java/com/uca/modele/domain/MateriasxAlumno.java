@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -26,7 +25,7 @@ public class MateriasxAlumno {
 	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_expediente")
-	private Expediente id_expediente;
+	private Expediente expediente;
 	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_ciclo")
@@ -45,21 +44,7 @@ public class MateriasxAlumno {
 	@Column(name = "nota")
 	private Double nota;
     
-    public MateriasxAlumno() {
-
-    }
-
-	public MateriasxAlumno(Integer id_materiaexp, Expediente id_expediente, Ciclo id_ciclo, Materias id_materia,
-			@NotBlank(message = "Este campo no puede estar vacío.") Integer anio,
-			@Size(min = 0, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") Double nota) {
-		super();
-		this.id_materiaexp = id_materiaexp;
-		this.id_expediente = id_expediente;
-		this.id_ciclo = id_ciclo;
-		this.id_materia = id_materia;
-		this.anio = anio;
-		this.nota = nota;
-	}
+    public MateriasxAlumno() {}
 
 	public Integer getId_materiaexp() {
 		return id_materiaexp;
@@ -70,11 +55,11 @@ public class MateriasxAlumno {
 	}
 
 	public Expediente getId_expediente() {
-		return id_expediente;
+		return expediente;
 	}
 
 	public void setId_expediente(Expediente id_expediente) {
-		this.id_expediente = id_expediente;
+		this.expediente = id_expediente;
 	}
 
 	public Ciclo getId_ciclo() {

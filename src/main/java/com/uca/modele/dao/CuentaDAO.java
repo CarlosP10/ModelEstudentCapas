@@ -12,6 +12,5 @@ public interface CuentaDAO {
 	public Cuenta findOne(Integer code) throws DataAccessException;
 	public void insertar(Cuenta c) throws DataAccessException;
 	public void save(Cuenta c) throws DataAccessException;
-	public void updateCuenta(Cuenta c);
 
 }

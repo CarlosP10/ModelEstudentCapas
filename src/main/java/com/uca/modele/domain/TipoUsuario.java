@@ -27,13 +27,6 @@ public class TipoUsuario {
 	
 	public TipoUsuario()  {}
 
-	public TipoUsuario(Integer id_tipo,
-			@Size(min = 1, max = 15, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String nombre) {
-		super();
-		this.id_tipo = id_tipo;
-		this.nombre = nombre;
-	}
-
 	public Integer getId_tipo() {
 		return id_tipo;
 	}

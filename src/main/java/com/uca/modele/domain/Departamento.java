@@ -28,21 +28,8 @@ public class Departamento {
     @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "nombre")
 	private String nombre;
-	
-	@OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
-	private List<Escuelas> escuelas;
 
-	public Departamento() {
-	}
-
-	public Departamento(Integer id_dpto,
-			@Size(min = 1, max = 15, message = "El nombre debe tener entre 1 y 50 caracteres.") @NotBlank(message = "Este campo no puede estar vacío.") String nombre,
-			List<Escuelas> escuelas) {
-		super();
-		this.id_dpto = id_dpto;
-		this.nombre = nombre;
-		this.escuelas = escuelas;
-	}
+	public Departamento() {}
 
 	public Integer getId_dpto() {
 		return id_dpto;
@@ -59,15 +46,6 @@ public class Departamento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public List<Escuelas> getEscuelas() {
-		return escuelas;
-	}
-
-	public void setEscuelas(List<Escuelas> escuelas) {
-		this.escuelas = escuelas;
-	}
-	
 	
 }
 

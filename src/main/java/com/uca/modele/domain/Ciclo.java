@@ -42,14 +42,6 @@ public class Ciclo {
 	}
 
 	public Ciclo() {}
-
-	public Ciclo(Integer id_ciclo,
-			@Size(min = 1) @NotBlank(message = "Este campo no puede estar vacío.") String ciclo) {
-		super();
-		this.id_ciclo = id_ciclo;
-		this.ciclo = ciclo;
-	}
-	
 	
 
 }

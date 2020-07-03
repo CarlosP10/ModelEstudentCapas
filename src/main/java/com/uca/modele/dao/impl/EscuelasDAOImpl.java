@@ -66,7 +66,7 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 
 	@Override
 	public void updateEscuelas(Escuelas c) {
-		Object[] parametros = new Object[] {c.getNombre(), c.getEstado(), c.getDescripcion(), c.getId_dpto()};
+		Object[] parametros = new Object[] {c.getNombre(), c.getEstado(), c.getDescripcion(), c.getMunicipio()};
 		jdbcTemplate.update(sql, parametros);
 		
 	}
