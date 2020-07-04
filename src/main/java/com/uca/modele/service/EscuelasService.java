@@ -26,6 +26,9 @@ public interface EscuelasService {
 	public List<Escuelas> findOnebyDpto(Integer codigo) throws DataAccessException;
 
 	public void save(Escuelas c) throws DataAccessException;
+	
+	public void update(Escuelas c) throws DataAccessException;
+
 
 	public void updateEscuelas(Escuelas c);
 	

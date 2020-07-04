@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlms:th="http://www.thymeleaf.org" xmlns:xmlms="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Agregar Centro Educativo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        //Ingresar centro educativo
+        function ingresarForm() {
+            //Referencias al ID de los input
+            var nombre = $('#nombre').val();
+            var estado = $('#estado').val();
+            var departamento = $('#departamento').val();
+
+            if (document.getElementById('estado').checked) {
+                estado = true;
+            } else {
+                estado = false;
+            }
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                type: 'post',
+                url: '/ingresarEscuela',
+                dataType: 'json',
+                data: JSON.stringify({
+                    'nombre': nombre,
+                    'estado': estado,
+                    'cDpto': parseInt(departamento)
+                }),
+                success: function (res) {
+                    if(res){
+                        swal("¡Éxito!", "Se ha registrado la escuela.", "success");
+                    }else{
+                        document.getElementById('errorNombre').hidden= false;
+                        swal("UPS!", "Ha ocurrido un error, revisa que la información ingresada sea correcta.", "error");
+                    }
+
+
+                },
+                error: function (e) {
+                    alert(e);
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h1> Ingresar Centro Educativo </h1>
+    <table>
+    <tr>
+        <td><label>Nombre: </label> </td>
+        <td><input type="text" name="nombre" id="nombre"> <br><label hidden="true" style="color:#E81505" id="errorNombre" name="errorNombre">Erroraso</label> </td>
+
+    </tr>
+        <tr>
+            <td><label>Activo:</label>
+            <td><input type="checkbox" name="estado" id="estado"> </td>
+        </tr>
+        <tr>
+            <td><Label>Municipio:</Label></td>
+            <td> <select id="municipio">
+                <option th:each="municipio: ${municipios}" th:text="${municipio.departamento.nombre + ',' + ' ' + municipio.nombre}" th:value="${municipio.idMunicipio}">
+            </select>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" value="Ingresar" onclick="ingresarForm()"></td>
+        </tr>
+    </table>
+</div>
+<a href="ListadoCentroEd">regresar</a>
+</body>
+</html>

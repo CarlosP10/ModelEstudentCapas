@@ -19,4 +19,5 @@ public interface MunicipioService {
 
 	public void updateMunicipio(Municipio c);
 
+	public Municipio findOne(Integer code) throws DataAccessException;
 }

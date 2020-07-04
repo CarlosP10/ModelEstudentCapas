@@ -13,7 +13,7 @@
 <div>
     <h1> Editar Centro Educativo </h1>
     <form th:action="@{/Modificar}" th:object="${centroEd}" method="post">
-        <input class="form-control" type="text" th:field="*{id_escuela}" hidden="hidden">
+        <input class="form-control" type="text" th:field="*{idEscuelas}" hidden="hidden">
         <input class="form-control" type="text" th:field="*{nombre}"> <br> <br>
         <input class="form-control" type="text" th:field="*{departamento.nombre}" readonly> <br> <br>
         <select id="cDpto" name="cDpto">

@@ -54,4 +54,11 @@ public class MunicipioServiceImpl implements MunicipioService{
 		return municipioRepository.findMuniByIdDpto(codigo);
 	}
 
+	@Override
+	public Municipio findOne(Integer code) throws DataAccessException {
+		Municipio municipio = entityManager.find(Municipio.class, code);
+
+        return municipio;
+	}
+
 }

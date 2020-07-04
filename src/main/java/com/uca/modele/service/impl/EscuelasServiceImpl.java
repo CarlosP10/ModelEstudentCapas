@@ -81,4 +81,10 @@ public class EscuelasServiceImpl implements EscuelasService{
 		return escuelasRepository.count();
 	}
 
+	@Override
+	public void update(Escuelas c) throws DataAccessException {
+		escuelasRepository.save(c);
+		
+	}
+
 }
