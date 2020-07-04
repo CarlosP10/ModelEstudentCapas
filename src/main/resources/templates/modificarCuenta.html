@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+
+<div>
+    <h1> Editar Cuenta de Usuario </h1>
+    <form th:action="@{/ModificarUsuario}" th:object="${cuenta}" method="post">
+        <table>
+            <tr>
+                <td><label for="idCuenta"> Id Usuario: </label></td>
+                <td><input type="text" id="idCuenta" th:field="*{idCuenta}" readonly> </td>
+            </tr>
+            <tr>
+                <td><label for="nombreUsuario">Usuario: </label></td>
+                <td><input type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
+            </tr>
+            <tr>
+                <td><label for="nombre">Nombre: </label></td>
+                <td><input type="text" id="nombre" th:field="*{nombre}" ><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
+            </tr>
+            <tr>
+                <td><label for="apellido">Apellido: </label></td>
+                <td><input type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
+            </tr>
+            <tr>
+                <td><label for="fechaNac">Fecha de nacimiento: </label></td>
+                <td><input type="date" id="fechaNac" th:field="*{fechaNac}" ><br><span th:errors="*{fechaNac}" style="color:  #E81505;"></span></td>
+            </tr>
+            <tr>
+                <td><label for="municipio">Municipio: </label></td>
+                <td>
+                    <select id="municipio" th:field="*{cMunicipio}">
+                        <option th:each="m : ${municipios}" th:value="${m.idMunicipio}" th:text="${m.departamento.nombre + ',' + ' ' + m.nombre}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="dir">Dirección: </label></td>
+                <td><textarea id="dir" th:field="*{direccion}" rows="4" cols="50"></textarea><br><span th:errors="*{direccion}" style="color:  #E81505;"></span></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="contrasenia">Nueva Contraseña (No escribir si no se va a cambiar): </label></td>
+                <td><input type="password" id="contrasenia" th:field="*{contrasenia}" ><br></span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Registrar"></td>
+            </tr>
+        </table>
+        <input type="hidden" id="clave" th:field="*{contrasenia}" ><br><span th:errors="*{contrasenia}" style="color:  #E81505; display:none;"></span></td>
+    </form>
+</div>
+<script th:if="${msg == '1'}">
+    swal("¡Éxito!", "Se ha registrado el usuario, espere a que su usuario sea habilitado para iniciar sesión.", "success");
+</script>
+
+<script th:if="${msg == '2'}">
+    swal("Algo ha salido mal...", "Parece ser que ese usuario ya ha sido registrado, prueba con otro.", "error");
+</script>
+
+<script th:if="${msg == '3'}">
+    swal("Algo ha salido mal...", "Ha ocurrido un error, revisa que la información ingresada sea correcta.", "error");
+</script>
+</body>
+</html>
