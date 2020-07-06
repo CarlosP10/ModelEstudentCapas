@@ -18,19 +18,19 @@ public class Ciclo {
     @GeneratedValue(generator="ciclo_id_ciclo_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "ciclo_id_ciclo_seq", sequenceName = "public.ciclo_id_ciclo_seq", allocationSize = 1)
 	@Column(name = "id_ciclo")
-	private Integer id_ciclo;
+	private Integer idCiclo;
 			
 	@Size(min=1)
     @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "ciclo")
 	private String ciclo;
 
-	public Integer getId_ciclo() {
-		return id_ciclo;
+	public Integer getIdCiclo() {
+		return idCiclo;
 	}
 
-	public void setId_ciclo(Integer id_ciclo) {
-		this.id_ciclo = id_ciclo;
+	public void setIdCiclo(Integer id_ciclo) {
+		this.idCiclo = id_ciclo;
 	}
 
 	public String getCiclo() {

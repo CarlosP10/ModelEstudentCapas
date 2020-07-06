@@ -49,10 +49,8 @@
     <h1> Editar Cuenta de Usuario </h1>
     <form th:action="@{/guardarCuentan}" th:object="${cuenta}" method="post">
         <table>
-            <tr>
-                <td><label for="idCuenta"> Id Usuario: </label></td>
-                <td><input type="text" id="idCuenta" th:field="*{idCuenta}" readonly> </td>
-            </tr>
+                <td><input type="hidden" id="idCuenta" th:field="*{idCuenta}"> </td>
+
             <tr>
                 <td><label for="nombreUsuario">Usuario: </label></td>
                 <td><input type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
@@ -64,10 +62,6 @@
             <tr>
                 <td><label for="apellido">Apellido: </label></td>
                 <td><input type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
-            </tr>
-             <tr>
-                <td><label for="edad">Edad: </label></td>
-                <td><input type="text" id="edad" th:field="*{edad}" readonly><br><span th:errors="*{edad}" style="color:  #E81505;"></span></td>
             </tr>
              <tr>
                 <td><label for="departamento">Departamento: </label></td>
@@ -112,20 +106,24 @@
             </tr>
             <tr>
                 <td><label>Descripcion:</label></td>
-                <td><input class="form-control" type="text" th:field="*{descripcion}"> </td>
+                <td><input class="form-control" type="text" th:field="*{descripcion}"> 
+                <br><span th:errors="*{descripcion}" style="color:  #E81505;"></span>
+                </td>
             </tr>
             <tr>
-                <td><label for="contrasenia">Nueva Contraseña (No escribir si no se va a cambiar): </label></td>
-                <td><input type="password" id="contrasenia" th:field="*{contrasenia}"  ><br></span></td>
+                <td><label for="contrasenia">Nueva Contraseña: </label></td>
+                <td><input type="password" id="contrasenia" th:field="*{contrasenia}"><br>
+                <br><span th:errors="*{contrasenia}" style="color:  #E81505;"></span>
+                </td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn-secondary" value="Guardar Cambios">
+                <td colspan="2"><input type="submit" class="btn btn-secondary" value="Guardar Cuenta">
                 <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./cuentaTable'" /><br> <br>
                 </td>
             </tr>
-            
+
         </table>
-        <input type="hidden" id="clave" th:field="*{contrasenia}" ><br><span th:errors="*{contrasenia}" style="color:  #E81505; display:none;"></span></td>
+        
     </form>
 </div>
 

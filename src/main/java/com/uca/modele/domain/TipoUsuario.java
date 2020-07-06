@@ -18,7 +18,7 @@ public class TipoUsuario {
     @GeneratedValue(generator="tipo_usuario_id_tipo_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "tipo_usuario_id_tipo_seq", sequenceName = "public.tipo_usuario_id_tipo_seq", allocationSize = 1)
 	@Column(name = "id_tipo")
-	private Integer id_tipo;
+	private Integer idTipo;
 			
 	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
@@ -27,12 +27,12 @@ public class TipoUsuario {
 	
 	public TipoUsuario()  {}
 
-	public Integer getId_tipo() {
-		return id_tipo;
+	public Integer getIdTipo() {
+		return idTipo;
 	}
 
-	public void setId_tipo(Integer id_tipo) {
-		this.id_tipo = id_tipo;
+	public void setIdTipo(Integer id_tipo) {
+		this.idTipo = id_tipo;
 	}
 
 	public String getNombre() {

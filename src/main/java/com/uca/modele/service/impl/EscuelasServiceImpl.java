@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.uca.modele.dao.EscuelasDAO;
 import com.uca.modele.domain.Escuelas;
 import com.uca.modele.repository.EscuelasRepository;
@@ -28,50 +30,31 @@ public class EscuelasServiceImpl implements EscuelasService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	@Override
 	public List<Escuelas> findAll() throws DataAccessException {
 		return escuelasRepository.findAll();
 	}
 
-	@Override
 	public List<Escuelas> findAll(Sort sort) {
 		return escuelasRepository.findAll(sort);
 	}
 
-	@Override
 	public Escuelas findOne(Integer codigo) throws DataAccessException {
-		return escuelasRepository.findEscuelaById(codigo);
+		return escuelasRepository.getOne(codigo);
 	}
 
-	@Override
+	@Transactional
 	public void save(Escuelas c) throws DataAccessException {
-		 escuelasDao.save(c);
-		
+		 escuelasDao.save(c);		
 	}
 
-	@Override
-	public void updateEscuelas(Escuelas c) {
-		 escuelasDao.updateEscuelas(c);
-		
-	}
-
-	@Override
-	public int insertar(Escuelas c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public List<Escuelas> findAllCatalogo() throws DataAccessException {
 		return escuelasRepository.findAllCatalogoEscuela();
 	}
 
-	@Override
 	public List<Escuelas> findOnebyDpto(Integer codigo) throws DataAccessException {
 		return escuelasRepository.findEscuelaByDepartamento(codigo);
 	}
 
-	@Override
 	public Page<Escuelas> findAll(Pageable page) throws DataAccessException {
 		return escuelasRepository.findAll(page);
 	}
@@ -79,12 +62,6 @@ public class EscuelasServiceImpl implements EscuelasService{
 	@Override
 	public Long countAll() {
 		return escuelasRepository.count();
-	}
-
-	@Override
-	public void update(Escuelas c) throws DataAccessException {
-		escuelasRepository.save(c);
-		
 	}
 
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlms:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Editar Materias</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,15 +45,17 @@
 <body>
 
 	<div>
-		<h1>Editar Materia</h1>
+		<h1>Nueva Materia</h1>
 		<form method="post" th:action="@{/guardarMateriasn}" th:object="${materias}">
 			<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./materiasTable'" /><br> <br>
 			<input class="form-control" type="text" th:field="*{idMateria}" hidden="hidden">
-			<input class="form-control" type="text" th:field="*{nombre}"> <br> <br>
-			<input class="form-control" type="text" th:field="*{descripcion}"> <br> <br>
+			<input class="form-control" type="text" th:field="*{nombre}"> 
+			<br><span th:errors="*{nombre}" style="color:  #e81505;"></span><br>
+			<input class="form-control" type="text" th:field="*{descripcion}">
+			<br><span th:errors="*{descripcion}" style="color:  #e81505;"></span><br>
 			<label>Estado:</label>
         	<input type="checkbox" id="estado"  th:field="*{estado}" > Activo
-			<input type="submit" class="btn btn-success" value="Guardar Cambios">
+			<input type="submit" class="btn btn-success" value="Guardar Materia">
 
 		</form>
 	</div>

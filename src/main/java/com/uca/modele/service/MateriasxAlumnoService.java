@@ -17,8 +17,4 @@ public interface MateriasxAlumnoService {
 
 	public void save(MateriasxAlumno c) throws DataAccessException;
 
-	public void updateMaterias(MateriasxAlumno c);
-	
-	public int insertar(MateriasxAlumno c);
-
 }

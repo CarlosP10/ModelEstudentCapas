@@ -1,6 +1,5 @@
 package com.uca.modele.domain;
 
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -18,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -32,7 +30,7 @@ public class Expediente {
 	@GeneratedValue(generator = "expediente_id_expediente_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "expediente_id_expediente_seq", sequenceName = "public.expediente_id_expediente_seq", allocationSize = 1)
 	@Column(name = "id_expediente")
-	private Integer id_expediente;
+	private Integer idExpediente;
 
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
@@ -47,7 +45,7 @@ public class Expediente {
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "fecha_nacimiento")
-	private Date fecha_nacimiento;
+	private Date fechaNacimiento;
 
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
@@ -62,12 +60,12 @@ public class Expediente {
 	@Column(name = "telefono_fijo")
     @Pattern(regexp = "^[0-9]{8}$", message = "El número de teléfono debe contener exactamente 8 dígitos.")
     @NotBlank(message = "Este campo no puede estar vacío.")
-	private Integer telefono_fijo;
+	private Integer telefonoFijo;
 
 	@Column(name = "telefono_movil")
 	@Pattern(regexp = "^[0-9]{8}$", message = "El número de teléfono debe contener exactamente 8 dígitos.")
 	@NotBlank(message = "Este campo no puede estar vacío.")
-	private Integer telefono_movil;
+	private Integer telefonoMovil;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_escuela")
@@ -76,12 +74,12 @@ public class Expediente {
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "nombre_padre")
-	private String nombre_padre;
+	private String nombrePadre;
 
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "nombre_madre")
-	private String nombre_madre;
+	private String nombreMadre;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_municipio")
@@ -103,28 +101,17 @@ public class Expediente {
 		this.municipio = municipio;
 	}
 
-	public Integer getcEscuela() {
-		return cEscuela;
-	}
-
-	public void setcEscuela(Integer cEscuela) {
-		this.cEscuela = cEscuela;
-	}
-
 	@OneToMany(mappedBy = "expediente", fetch = FetchType.LAZY)
 	private List<MateriasxAlumno> materiasxEstudiantes;
-	
-	@Transient
-    private Integer cEscuela;
 
 	public Expediente() {}
 
-	public Integer getId_expediente() {
-		return id_expediente;
+	public Integer getIdExpediente() {
+		return idExpediente;
 	}
 
-	public void setId_expediente(Integer id_expediente) {
-		this.id_expediente = id_expediente;
+	public void setIdExpediente(Integer id_expediente) {
+		this.idExpediente = id_expediente;
 	}
 
 	public String getNombres() {
@@ -143,17 +130,17 @@ public class Expediente {
 		this.apellidos = apellidos;
 	}
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fecha_nacimiento) {
+		this.fechaNacimiento = fecha_nacimiento;
 	}
 
 	public Integer getEdad() {
 		Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(getFecha_nacimiento().getTime());
+        c.setTimeInMillis(getFechaNacimiento().getTime());
 
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
@@ -177,44 +164,44 @@ public class Expediente {
 		this.direccion = direccion;
 	}
 
-	public Integer getTelefono_fijo() {
-		return telefono_fijo;
+	public Integer getTelefonoFijo() {
+		return telefonoFijo;
 	}
 
-	public void setTelefono_fijo(Integer telefono_fijo) {
-		this.telefono_fijo = telefono_fijo;
+	public void setTelefonoFijo(Integer telefono_fijo) {
+		this.telefonoFijo = telefono_fijo;
 	}
 
-	public Integer getTelefono_movil() {
-		return telefono_movil;
+	public Integer getTelefonoMovil() {
+		return telefonoMovil;
 	}
 
-	public void setTelefono_movil(Integer telefono_movil) {
-		this.telefono_movil = telefono_movil;
+	public void setTelefonoMovil(Integer telefono_movil) {
+		this.telefonoMovil = telefono_movil;
 	}
 
-	public Escuelas getId_escuela() {
+	public Escuelas getIdEscuela() {
 		return escuela;
 	}
 
-	public void setId_escuela(Escuelas id_escuela) {
+	public void setIdEscuela(Escuelas id_escuela) {
 		this.escuela = id_escuela;
 	}
 
-	public String getNombre_padre() {
-		return nombre_padre;
+	public String getNombrePadre() {
+		return nombrePadre;
 	}
 
-	public void setNombre_padre(String nombre_padre) {
-		this.nombre_padre = nombre_padre;
+	public void setNombrePadre(String nombre_padre) {
+		this.nombrePadre = nombre_padre;
 	}
 
-	public String getNombre_madre() {
-		return nombre_madre;
+	public String getNombreMadre() {
+		return nombreMadre;
 	}
 
-	public void setNombre_madre(String nombre_madre) {
-		this.nombre_madre = nombre_madre;
+	public void setNombreMadre(String nombre_madre) {
+		this.nombreMadre = nombre_madre;
 	}
 
 	public List<MateriasxAlumno> getMateriasxEstudiantes() {
@@ -224,23 +211,7 @@ public class Expediente {
 	public void setMateriasxEstudiantes(List<MateriasxAlumno> materiasxEstudiantes) {
 		this.materiasxEstudiantes = materiasxEstudiantes;
 	}
-	
-	@Override
-    public String toString() {
-        return "Estudiante{" +
-                "id_expediente=" + id_expediente +
-                ", nombres='" + nombres + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", fecha_nacimiento=" + fecha_nacimiento +
-                ", direccion='" + direccion + '\'' +
-                ", telefono_movil='" + telefono_movil + '\'' +
-                ", telefono_fijo='" + telefono_fijo + '\'' +
-                ", id_escuela=" + escuela +
-                ", nombre_madre='" + nombre_madre + '\'' +
-                ", nombre_padre='" + nombre_padre + '\'' +
-                ", materiasxEstudiantes=" + materiasxEstudiantes +
-                '}';
-    }
+
 
 }
 

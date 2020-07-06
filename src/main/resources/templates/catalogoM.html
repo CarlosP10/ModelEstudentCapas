@@ -56,7 +56,10 @@
 	});
 </script>
 <body>
-	
+	<div class="card-body">
+      <input type="button" class="btn btn-warning" value="Nueva Materia" onclick="location.href='./nuevoM'"></div>
+    </div><br>
+	<p th:if="${resultado == 1}" class="mb-0">Materia guardada con &eacute;xito</p><br/>
 	<table class="table table-bordered" id="tablaMaterias">
 		<thead class="thead-dark">
 			<th style="width: 130px">Acci&oacute;n</th>
@@ -65,8 +68,9 @@
 			<th>Estado</th>
 		</thead>
 	</table>
-	
-	<br>
-	<br>
+<br> <br>
+	<div class="card-body">
+      <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./indexAdmin'" /><br> <br>
+    </div>
 </body>
 </html>

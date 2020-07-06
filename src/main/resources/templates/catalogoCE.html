@@ -56,7 +56,10 @@
 	});
 </script>
 <body>
-	
+    <div class="card-body">
+      <input type="button" class="btn btn-warning" value="Nuevo Centro Escolar" onclick="location.href='./nuevoCE'"></div>
+    </div><br>
+	<p th:if="${resultado == 1}" class="mb-0">Escuela guardado con &eacute;xito</p><br/>
 	<table class="table table-bordered" id="tablaCE">
 		<thead class="thead-dark">
 			<tr>
@@ -70,5 +73,11 @@
 	
 	<br>
 	<br>
+
+	
+    <div class="card-body">
+      <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./indexAdmin'" /><br> <br>
+    </div>
+
 </body>
 </html>

@@ -15,10 +15,4 @@ public interface TipoUsuarioService {
 
 	public TipoUsuario findOne(Integer codigo) throws DataAccessException;
 
-	public void save(TipoUsuario c) throws DataAccessException;
-
-	public void updateTipoUsuario(TipoUsuario c);
-	
-	public int insertar(TipoUsuario c);
-
 }

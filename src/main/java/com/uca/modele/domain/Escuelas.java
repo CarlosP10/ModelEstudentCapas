@@ -13,9 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -23,55 +24,37 @@ import javax.validation.constraints.Size;
 public class Escuelas {
 	
 	@Id
-    @GeneratedValue(generator="escuelas_id_escuela_seq", strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "escuelas_id_escuela_seq", sequenceName = "public.escuelas_id_escuela_seq", allocationSize = 1)
+    @GeneratedValue(generator="escuelas_id_escuela_seq",strategy = GenerationType.AUTO)
     @Column(name = "id_escuela")
 	private Integer idEscuela;
 	
 	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
-    @NotBlank(message = "Este campo no puede estar vacío.")
+//    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "nombre")
 	private String nombre;
 	
-    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "estado")
 	private Boolean estado; 
 	
-    @Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
-    @NotBlank(message = "Este campo no puede estar vacío.")
+    @Size(min=1, max=75, message = "El nombre debe tener entre 1 y 50 caracteres.")
+//    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "descripcion")
 	private String descripcion; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_municipio")
 	private Municipio municipio; 
-	
+		
+	@JsonIgnore
 	@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
     private List<Expediente> expedientes;
 
-    @Transient
-    private Integer cDpto;
-    
-    @Column(name = "escuela_cod")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer numeroCod;
-	
-	public Integer getNumeroCod() {
-		return numeroCod;
-	}
-
-	public void setNumeroCod(Integer numeroCod) {
-		this.numeroCod = numeroCod;
-	}
-
-    public Escuelas() {}
-    
 	public Integer getIdEscuela() {
 		return idEscuela;
 	}
 
-	public void setId_escuela(Integer id_escuela) {
-		this.idEscuela = id_escuela;
+	public void setIdEscuela(Integer idEscuela) {
+		this.idEscuela = idEscuela;
 	}
 
 	public String getNombre() {
@@ -113,23 +96,8 @@ public class Escuelas {
 	public void setExpedientes(List<Expediente> expedientes) {
 		this.expedientes = expedientes;
 	}
-
-	public List<Expediente> getEstudiantes() {
-		return expedientes;
-	}
-
-	public void setEstudiantes(List<Expediente> expedientes) {
-		this.expedientes = expedientes;
-	}
-
-	public Integer getcDpto() {
-		return cDpto;
-	}
-
-	public void setcDpto(Integer cDpto) {
-		this.cDpto = cDpto;
-	}
-    
+	
+	public Escuelas() {}
     
 
 }

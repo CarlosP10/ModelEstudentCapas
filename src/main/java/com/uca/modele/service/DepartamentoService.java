@@ -15,8 +15,4 @@ public interface DepartamentoService {
 
 	public Departamento findOne(Integer codigo) throws DataAccessException;
 
-	public void save(Departamento c) throws DataAccessException;
-
-	public void updateDepartamento(Departamento c);
-
 }

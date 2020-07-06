@@ -3,6 +3,8 @@ package com.uca.modele.controller.catalogos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 
 import com.uca.modele.dao.MateriasDAO;
-import com.uca.modele.domain.Cuenta;
 import com.uca.modele.domain.Materias;
 import com.uca.modele.dto.TableDTO;
 import com.uca.modele.service.MateriasService;
@@ -50,6 +52,15 @@ public class MateriaController {
 		return mav;
 	}
 	
+	@RequestMapping("/nuevoM")
+	public ModelAndView nuevoM() {
+		ModelAndView mav = new ModelAndView();
+		Materias c = new Materias();
+		mav.addObject("materias", c);
+		mav.setViewName("nuevaMateria");
+		return mav;
+	}
+	
 	@RequestMapping("/cargarMaterias")
 	public @ResponseBody TableDTO cargarCuenta(@RequestParam Integer draw,
 			@RequestParam Integer start, @RequestParam Integer length, 
@@ -59,7 +70,7 @@ public class MateriaController {
 		List<String[]> data = new ArrayList<>();
 		
 		for(Materias u: cuentas) {
-			data.add(new String[] {u.getId_materia().toString(), u.getNumeroCod().toString(),
+			data.add(new String[] {u.getIdMateria().toString(), u.getIdMateria().toString(),
 					u.getDescripcion(), u.getEstado() == true ? "Activo" : "Inactivo"});
 		}
 		
@@ -70,13 +81,18 @@ public class MateriaController {
 		dto.setRecordsTotal(materiasService.countAll().intValue());
 		return dto;
 	}
-
-	@RequestMapping("/guardarMaterias")
-	public ModelAndView guardarMaterias(@ModelAttribute Materias materias) {
+	
+	@RequestMapping("/guardarMateriasn")
+	public ModelAndView guardarMateriasn(@Valid @ModelAttribute Materias materias,BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		materiasService.save(materias);
-		mav.setViewName("catalogoM");
-		mav.addObject("resultado", 1);
+		if (result.hasErrors()) {
+			mav.setViewName("nuevaMateria");		
+//			mav.setViewName("modificarMateria");
+		} else {
+			materiasService.save(materias);
+			mav.setViewName("catalogoM");
+			mav.addObject("resultado", 1);			
+		}
 		return mav;
 	}
 

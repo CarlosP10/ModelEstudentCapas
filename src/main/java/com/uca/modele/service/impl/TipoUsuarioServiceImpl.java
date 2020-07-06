@@ -27,38 +27,17 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	@Override
 	public List<TipoUsuario> findAll() throws DataAccessException {
-		return tipoUsuarioRepository.findAllTipos();
+		return tipoUsuarioRepository.findAll();
 	}
 
-	@Override
 	public List<TipoUsuario> findAll(Sort sort) {
 		return tipoUsuarioRepository.findAll(sort);
 	}
 
-	@Override
 	public TipoUsuario findOne(Integer codigo) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return tipoUsuarioRepository.getOne(codigo);
 	}
 
-	@Override
-	public void save(TipoUsuario c) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateTipoUsuario(TipoUsuario c) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int insertar(TipoUsuario c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

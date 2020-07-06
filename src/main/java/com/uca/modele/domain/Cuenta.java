@@ -1,10 +1,11 @@
 package com.uca.modele.domain;
 
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +45,7 @@ public class Cuenta {
 	private String apellido;
 	
 	@Column(name = "fecha_nac")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
     @Past(message = "La fecha de nacimiento debe ser anterior a la fecha de ahora.")
     @NotNull(message = "Este campo no puede estar vacío.")
 	private Date fechaNac;
@@ -56,18 +57,12 @@ public class Cuenta {
     @JoinColumn(name = "id_dpto")
 	private Departamento idDpto;
 	
-	@Transient
-    private Integer cDepto;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_municipio")
     private Municipio municipio;
 	
-	@Transient
-    private Integer cMunicipio;
-	
 	@Column(name = "direccion")
-    @Size(min=1, max=15, message = "La dirección debe tener entre 1 y 200 caracteres.")
+    @Size(min=1, max=100, message = "La dirección debe tener entre 1 y 200 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
 	private String direccion;	
 	
@@ -80,7 +75,7 @@ public class Cuenta {
 	private String nombreUsuario;
 	
 	@Column(name = "contrasenia")
-    @Size(max=50, message = "La contraseña no debe tener más de 50 caracteres.")
+    @Size(max=30, message = "La contraseña no debe tener más de 50 caracteres.")
     @Size(min=8, message = "La contraseña debe tener como mínimo 8 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
 	private String contrasenia;
@@ -89,45 +84,14 @@ public class Cuenta {
     @JoinColumn(name = "id_tipo")
 	private TipoUsuario idTipo;
 	
-	@Transient
-    private Integer cTipo;
-	
 	@Column(name = "sesion")
 	private Boolean sesion; 
 	
 	@Column(name = "descripcion")
-    @Size(max=50, message = "La contraseña no debe tener más de 50 caracteres.")
+    @Size(max=100, message = "La contraseña no debe tener más de 50 caracteres.")
     @Size(min=8, message = "La contraseña debe tener como mínimo 8 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
 	private String descripcion;
-	
-	@Column(name = "cuenta_cod")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer numeroCod;
-	
-	public Integer getNumeroCod() {
-		return numeroCod;
-	}
-
-	public void setNumeroCod(Integer numeroCod) {
-		this.numeroCod = numeroCod;
-	}
-
-	public Integer getcDepto() {
-		return cDepto;
-	}
-
-	public void setcDepto(Integer cDepto) {
-		this.cDepto = cDepto;
-	}
-
-	public Integer getcTipo() {
-		return cTipo;
-	}
-
-	public void setcTipo(Integer cTipo) {
-		this.cTipo = cTipo;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -141,9 +105,7 @@ public class Cuenta {
 		this.edad = edad;
 	}
 
-	public Cuenta() {
-
-    }
+	public Cuenta() {}
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -201,14 +163,6 @@ public class Cuenta {
 		this.municipio = municipio;
 	}
 
-	public Integer getcMunicipio() {
-		return cMunicipio;
-	}
-
-	public void setcMunicipio(Integer cMunicipio) {
-		this.cMunicipio = cMunicipio;
-	}
-
 	public String getDireccion() {
 		return direccion;
 	}
@@ -247,6 +201,17 @@ public class Cuenta {
 
 	public void setSesion(Boolean sesion) {
 		this.sesion = sesion;
+	}
+	
+	public String getFechaDelegate(){
+		if(this.fechaNac == null){
+			return "";
+		}
+		else{
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String shortdate = sdf.format(this.fechaNac.getTime());
+			return shortdate;
+		}
 	}
 	
 	public Integer getEdad(){

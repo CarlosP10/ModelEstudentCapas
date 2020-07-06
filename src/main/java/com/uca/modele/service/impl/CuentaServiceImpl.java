@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -12,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.modele.dao.CuentaDAO;
 import com.uca.modele.domain.Cuenta;
@@ -41,12 +41,6 @@ public class CuentaServiceImpl implements CuentaService{
 	@Transactional
 	public void save(Cuenta c) throws DataAccessException {
 		 cuentaDao.save(c);		
-	}
-
-	@Override
-	public int insertar(Cuenta c) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

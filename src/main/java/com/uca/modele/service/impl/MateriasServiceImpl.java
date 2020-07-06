@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.modele.dao.MateriasDAO;
 import com.uca.modele.domain.Materias;
@@ -29,50 +30,32 @@ public class MateriasServiceImpl implements MateriasService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	@Override
 	public List<Materias> findAll() throws DataAccessException {
 		return materiasRepository.findAll();
 	}
 
-	@Override
 	public List<Materias> findAll(Sort sort) {
 		return materiasRepository.findAll(sort);
 	}
 
-	@Override
 	public Materias findOne(Integer codigo) throws DataAccessException {
 		return materiasRepository.getOne(codigo);
 	}
 
-	@Override
+	@Transactional
 	public void save(Materias c) throws DataAccessException {
 		 materiasDao.save(c);
 		
 	}
 
-	@Override
-	public void updateMaterias(Materias c) {
-		 materiasDao.updateMaterias(c);
-		
-	}
-
-	@Override
-	public int insertar(Materias c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public List<Materias> findAllCatalogo() throws DataAccessException {
 		return materiasRepository.findAllCatalogoMateria();
 	}
 
-	@Override
 	public Page<Materias> findAll(Pageable page) throws DataAccessException {
 		return materiasRepository.findAll(page);
 	}
 
-	@Override
 	public Long countAll() {
 		return materiasRepository.count();
 	}

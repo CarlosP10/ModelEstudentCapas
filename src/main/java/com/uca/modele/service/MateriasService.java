@@ -24,8 +24,4 @@ public interface MateriasService {
 
 	public void save(Materias c) throws DataAccessException;
 
-	public void updateMaterias(Materias c);
-	
-	public int insertar(Materias c);
-
 }

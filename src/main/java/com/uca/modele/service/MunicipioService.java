@@ -15,9 +15,5 @@ public interface MunicipioService {
 
 	public List<Municipio> findbyDpto(Integer codigo) throws DataAccessException;
 
-	public void save(Municipio c) throws DataAccessException;
-
-	public void updateMunicipio(Municipio c);
-
 	public Municipio findOne(Integer code) throws DataAccessException;
 }

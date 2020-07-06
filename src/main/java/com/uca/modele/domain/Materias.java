@@ -24,9 +24,7 @@ public class Materias {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
 	@Column(name = "nombre")
 	private String nombre;
-	
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")	
+		
 	@Column(name = "estado")
 	private Boolean estado;
 	
@@ -35,25 +33,13 @@ public class Materias {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@Column(name = "mat_cod")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer numeroCod;
-	
-	public Integer getNumeroCod() {
-		return numeroCod;
-	}
-
-	public void setNumeroCod(Integer numeroCod) {
-		this.numeroCod = numeroCod;
-	}
-	
 	public Materias() {}
 
-	public Integer getId_materia() {
+	public Integer getIdMateria() {
 		return idMateria;
 	}
 
-	public void setId_materia(Integer id_materia) {
+	public void setIdMateria(Integer id_materia) {
 		this.idMateria = id_materia;
 	}
 

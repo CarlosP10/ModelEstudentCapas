@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -25,7 +24,7 @@ public class Municipio {
     @GeneratedValue(generator="municipio_id_municipio_seq", strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "municipio_id_municipio_seq", sequenceName = "public.municipio_id_municipio_seq", allocationSize = 1)
 	@Column(name = "id_municipio")
-	private Integer id_municipio;
+	private Integer idMunicipio;
 	
 	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
     @NotBlank(message = "Este campo no puede estar vacío.")
@@ -34,10 +33,7 @@ public class Municipio {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_dpto")
-	private Departamento id_dpto; 
-	
-	@Transient
-    private Integer cDepto;
+	private Departamento idDpto; 
 	
 	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY)
 	private List<Cuenta> cuentas;
@@ -58,14 +54,6 @@ public class Municipio {
 
 	public Municipio() {}
 
-	public Integer getcDepto() {
-		return cDepto;
-	}
-
-	public void setcDepto(Integer cDepto) {
-		this.cDepto = cDepto;
-	}
-
 	public List<Cuenta> getCuentas() {
 		return cuentas;
 	}
@@ -74,12 +62,12 @@ public class Municipio {
 		this.cuentas = cuentas;
 	}
 
-	public Integer getId_municipio() {
-		return id_municipio;
+	public Integer getIdMunicipio() {
+		return idMunicipio;
 	}
 
-	public void setId_municipio(Integer id_municipio) {
-		this.id_municipio = id_municipio;
+	public void setIdMunicipio(Integer id_municipio) {
+		this.idMunicipio = id_municipio;
 	}
 
 	public String getNombre() {
@@ -90,12 +78,12 @@ public class Municipio {
 		this.nombre = nombre;
 	}
 
-	public Departamento getId_dpto() {
-		return id_dpto;
+	public Departamento getIdDpto() {
+		return idDpto;
 	}
 
-	public void setId_dpto(Departamento id_dpto) {
-		this.id_dpto = id_dpto;
+	public void setIdDpto(Departamento id_dpto) {
+		this.idDpto = id_dpto;
 	}
 
 	public List<Cuenta> getUsuarios() {

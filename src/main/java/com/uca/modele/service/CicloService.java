@@ -15,9 +15,4 @@ public interface CicloService {
 	public List<Ciclo> findAll(Sort sort);
 
 	public Ciclo findOne(Integer codigo) throws DataAccessException;
-
-	public void save(Ciclo c) throws DataAccessException;
-
-	public void updateCiclo(Ciclo c);
-
 }

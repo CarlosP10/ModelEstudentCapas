@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -20,9 +19,6 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	private static final String sql = "UPDATE public.escuelas SET nombre = ?, estado = ?, descripcion = ?, id_dpto = ?";
-
-	
 	@PersistenceContext(unitName = "modele")
 	private EntityManager entityManager;
 
@@ -35,25 +31,12 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 		
 		return resulset;
 	}
-
-	@Override
+	
 	public Escuelas findOne(Integer code) throws DataAccessException {
 		Escuelas escuelas = entityManager.find(Escuelas.class, code);
 		return escuelas;
 	}
-
-	@Transactional
-	public void insertar(Escuelas e) throws DataAccessException {
-		if(e.getIdEscuela() == null) { 
-			entityManager.persist(e);
-		}
-		else { 
-			entityManager.merge(e); 
-		}
-		
-	}
-
-	@Override
+	
 	public void save(Escuelas c) throws DataAccessException {
 		if(c.getIdEscuela() == null) { 
 			entityManager.persist(c); 
@@ -61,13 +44,6 @@ public class EscuelasDAOImpl implements EscuelasDAO{
 		else { 
 			entityManager.merge(c); 
 		}
-		
-	}
-
-	@Override
-	public void updateEscuelas(Escuelas c) {
-		Object[] parametros = new Object[] {c.getNombre(), c.getEstado(), c.getDescripcion(), c.getMunicipio()};
-		jdbcTemplate.update(sql, parametros);
 		
 	}
 

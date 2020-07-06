@@ -22,8 +22,6 @@ public interface CuentaService {
 
 	public Cuenta findOne(Integer codigo) throws DataAccessException;
 
-	public void save(Cuenta c) throws DataAccessException;
-	
-	public int insertar(Cuenta c);
+	public void save(Cuenta c) throws DataAccessException;	
 
 }

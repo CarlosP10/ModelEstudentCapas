@@ -41,15 +41,6 @@ public class CuentaDAOImpl implements CuentaDAO{
 		return cuenta;
 	}
 
-	public void insertar(Cuenta e) throws DataAccessException {
-		if(e.getIdCuenta() == null) { 
-			entityManager.persist(e);
-		}
-		else { 
-			entityManager.merge(e); 
-		}		
-	}
-
 	public void save(Cuenta c) throws DataAccessException {
 		if(c.getIdCuenta() == null) { 
 			entityManager.persist(c); 

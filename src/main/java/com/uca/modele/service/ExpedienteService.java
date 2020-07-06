@@ -21,8 +21,4 @@ public interface ExpedienteService {
 
 	public void save(Expediente c) throws DataAccessException;
 
-	public void updateExpediente(Expediente c);
-	
-	public int insertar(Expediente c);
-
 }

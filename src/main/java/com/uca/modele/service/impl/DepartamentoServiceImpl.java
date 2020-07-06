@@ -26,32 +26,16 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	@Override
 	public List<Departamento> findAll() throws DataAccessException {
 		return dptoRepository.findAllDptos();
 	}
 
-	@Override
 	public List<Departamento> findAll(Sort sort) {
 		return findAll(sort);
 	}
 
-	@Override
-	public Departamento findOne(Integer codigo) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(Departamento c) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateDepartamento(Departamento c) {
-		// TODO Auto-generated method stub
-		
+	public Departamento findOne(Integer id) throws DataAccessException {
+		return dptoRepository.getOne(id);
 	}
 
 }

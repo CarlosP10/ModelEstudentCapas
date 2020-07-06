@@ -27,38 +27,20 @@ public class MunicipioServiceImpl implements MunicipioService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	@Override
 	public List<Municipio> findAll() throws DataAccessException {
-		return municipioRepository.findAllMuni();
+		return municipioRepository.findAll();
 	}
 
-	@Override
 	public List<Municipio> findAll(Sort sort) {
 		return municipioRepository.findAll(sort);
 	}
 
-	@Override
-	public void save(Municipio c) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateMunicipio(Municipio c) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<Municipio> findbyDpto(Integer codigo) throws DataAccessException {
 		return municipioRepository.findMuniByIdDpto(codigo);
 	}
 
-	@Override
 	public Municipio findOne(Integer code) throws DataAccessException {
-		Municipio municipio = entityManager.find(Municipio.class, code);
-
-        return municipio;
+		return municipioRepository.getOne(code);
 	}
 
 }

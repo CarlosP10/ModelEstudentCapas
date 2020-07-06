@@ -5,8 +5,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<meta charset="UTF-8">
-<title>Editar Materias</title>
+    <meta charset="UTF-8">
+    <title>Modificar Centro Educativo</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -42,21 +42,31 @@
   <script type="text/javascript" th:src="@{/js/ui/sweetalert.min.js}"></script>
     
 </head>
+<script type="text/javascript">
+	
+</script>
 <body>
 
-	<div>
-		<h1>Editar Materia</h1>
-		<form method="post" th:action="@{/guardarMateriasn}" th:object="${materias}">
-			<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./materiasTable'" /><br> <br>
-			<input class="form-control" type="text" th:field="*{idMateria}" hidden="hidden">
-			<input class="form-control" type="text" th:field="*{nombre}"> <br> <br>
-			<input class="form-control" type="text" th:field="*{descripcion}"> <br> <br>
-			<label>Estado:</label>
-        	<input type="checkbox" id="estado"  th:field="*{estado}" > Activo
-			<input type="submit" class="btn btn-success" value="Guardar Cambios">
+<div>
+    <h1> Editar Centro Educativo </h1><br> <br>   
+    <form method="post" th:action="@{/guardarEscuelasn}" th:object="${escuelas}" >
+    	<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" /><br> <br>
+        <input class="form-control" type="hidden" th:field="*{idEscuela}">
+        <br><span th:errors="*{idEscuela}" style="color:  #e81505;"></span><br>
+        <input class="form-control" type="text" th:field="*{nombre}"> 
+        <br><span th:errors="*{nombre}" style="color:  #e81505;"></span><br>
+        <input class="form-control" type="text" th:field="*{descripcion}"> 
+        <br><span th:errors="*{descripcion}" style="color:  #e81505;"></span><br>
+        <input class="form-control" type="text" th:field="*{municipio.nombre}" readonly> 
+        <select th:field="*{municipio.idMunicipio}">
+            <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombre}">
+        </select>
+        <label>Estado:</label>
+        <input type="checkbox" id="estado"  th:field="*{estado}" > Activo
+        <input class="btn btn-success" type="submit" value="Guardar Centro Escolar">
 
-		</form>
-	</div>
+    </form>
+</div>
 
 </body>
 </html>

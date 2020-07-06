@@ -21,7 +21,7 @@ public class MateriasxAlumno {
 	@GeneratedValue(generator = "materiaxalumno_id_materiaexp_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "materiaxalumno_id_materiaexp_seq", sequenceName = "public.materiaxalumno_id_materiaexp_seq", allocationSize = 1)
 	@Column(name = "id_materiaexp")
-	private Integer id_materiaexp;
+	private Integer idMateriaexp;
 	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_expediente")
@@ -29,11 +29,11 @@ public class MateriasxAlumno {
 	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_ciclo")
-	private Ciclo id_ciclo;
+	private Ciclo ciclo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_materia")
-	private Materias id_materia;
+	private Materias materia;
 	
     @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "anio")
@@ -46,36 +46,36 @@ public class MateriasxAlumno {
     
     public MateriasxAlumno() {}
 
-	public Integer getId_materiaexp() {
-		return id_materiaexp;
+	public Integer getIdMateriaexp() {
+		return idMateriaexp;
 	}
 
-	public void setId_materiaexp(Integer id_materiaexp) {
-		this.id_materiaexp = id_materiaexp;
+	public void setIdMateriaexp(Integer id_materiaexp) {
+		this.idMateriaexp = id_materiaexp;
 	}
 
-	public Expediente getId_expediente() {
+	public Expediente getIdExpediente() {
 		return expediente;
 	}
 
-	public void setId_expediente(Expediente id_expediente) {
+	public void setIdExpediente(Expediente id_expediente) {
 		this.expediente = id_expediente;
 	}
 
-	public Ciclo getId_ciclo() {
-		return id_ciclo;
+	public Ciclo getIdCiclo() {
+		return ciclo;
 	}
 
-	public void setId_ciclo(Ciclo id_ciclo) {
-		this.id_ciclo = id_ciclo;
+	public void setIdCiclo(Ciclo id_ciclo) {
+		this.ciclo = id_ciclo;
 	}
 
-	public Materias getId_materia() {
-		return id_materia;
+	public Materias getIdMateria() {
+		return materia;
 	}
 
-	public void setId_materia(Materias id_materia) {
-		this.id_materia = id_materia;
+	public void setIdMateria(Materias id_materia) {
+		this.materia = id_materia;
 	}
 
 	public Integer getAnio() {

@@ -26,36 +26,17 @@ public class CicloServiceImpl implements CicloService{
 	
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
-	
-	
 
-	@Override
 	public List<Ciclo> findAll() throws DataAccessException {
 		return cicloRepository.findAllCiclos();
 	}
 
-	@Override
 	public List<Ciclo> findAll(Sort sort) {
-		// TODO Auto-generated method stub
-		return null;
+		return cicloRepository.findAll(sort);
 	}
 
-	@Override
 	public Ciclo findOne(Integer codigo) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(Ciclo c) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateCiclo(Ciclo c) {
-		// TODO Auto-generated method stub
-		
+		return cicloRepository.getOne(codigo);
 	}
 
 }
