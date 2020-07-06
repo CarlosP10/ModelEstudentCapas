@@ -49,19 +49,19 @@
     <h1> Editar Cuenta de Usuario </h1>
     <form th:action="@{/guardarCuentan}" th:object="${cuenta}" method="post">
         <table>
-                <td><input type="hidden" id="idCuenta" th:field="*{idCuenta}"> </td>
+                <td><input class="form-control" type="hidden" id="idCuenta" th:field="*{idCuenta}"> </td>
 
             <tr>
                 <td><label for="nombreUsuario">Usuario: </label></td>
-                <td><input type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
+                <td><input class="form-control" type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
             </tr>
             <tr>
                 <td><label for="nombre">Nombre: </label></td>
-                <td><input type="text" id="nombre" th:field="*{nombre}" ><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="nombre" th:field="*{nombre}" ><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
             </tr>           
             <tr>
                 <td><label for="apellido">Apellido: </label></td>
-                <td><input type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
             </tr>
              <tr>
                 <td><label for="departamento">Departamento: </label></td>
@@ -86,7 +86,7 @@
             </tr>
             <tr>
                 <td><label for="fechaNac">Fecha de nacimiento: </label></td>
-                <td><input type="text" id="fechaNac" th:field="*{fechaNac}" ><br><span th:errors="*{fechaNac}" style="color:  #E81505;"></span>
+                <td><input class="form-control" type="text" id="fechaNac" th:field="*{fechaNac}" ><br><span th:errors="*{fechaNac}" style="color:  #E81505;"></span>
                 	<script type="text/javascript">
 				        $(function () {
 				            $('#fechaNac').datepicker({
@@ -102,7 +102,7 @@
             </tr>
             <tr>
                 <td><label>Estado:</label></td>
-                <td><input type="checkbox" id="estado"  th:field="*{estado}" > Activo</td>
+                <td><input class="form-check-input" type="checkbox" id="estado"  th:field="*{estado}" > Activo</td>
             </tr>
             <tr>
                 <td><label>Descripcion:</label></td>
@@ -112,12 +112,12 @@
             </tr>
             <tr>
                 <td><label for="contrasenia">Nueva Contraseña: </label></td>
-                <td><input type="password" id="contrasenia" th:field="*{contrasenia}"><br>
+                <td><input class="form-control" type="password" id="contrasenia" th:field="*{contrasenia}"><br>
                 <br><span th:errors="*{contrasenia}" style="color:  #E81505;"></span>
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn-secondary" value="Guardar Cuenta">
+                <td colspan="2"><input type="submit" class="btn btn-success" value="Guardar Cuenta">
                 <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./cuentaTable'" /><br> <br>
                 </td>
             </tr>
