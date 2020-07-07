@@ -53,13 +53,18 @@
     	<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" /><br> <br>
         <input class="form-control" type="hidden" th:field="*{idEscuela}">
         <br><span th:errors="*{idEscuela}" style="color:  #e81505;"></span><br>
+        
+        <td><label class="col-sm-2 col-form-label">Nombre: </label> </td>
         <input class="form-control" type="text" th:field="*{nombre}"> 
         <br><span th:errors="*{nombre}" style="color:  #e81505;"></span><br>
+        
+        <td><label class="col-sm-2 col-form-label">Descripcion: </label> </td>
         <input class="form-control" type="text" th:field="*{descripcion}"> 
         <br><span th:errors="*{descripcion}" style="color:  #e81505;"></span><br>
-        <input class="form-control" type="text" th:field="*{municipio.nombre}" readonly> 
+        
+        <td><Label class="form-check-label">Municipio:</Label></td> 
         <select th:field="*{municipio.idMunicipio}">
-            <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombre}">
+            <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombre}"><br><br>
         </select>
         <label>Estado:</label>
         <input type="checkbox" id="estado"  th:field="*{estado}" > Activo

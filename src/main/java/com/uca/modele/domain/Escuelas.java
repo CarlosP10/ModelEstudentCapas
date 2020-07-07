@@ -28,7 +28,7 @@ public class Escuelas {
     @Column(name = "id_escuela")
 	private Integer idEscuela;
 	
-	@Size(min=1, max=15, message = "El nombre debe tener entre 1 y 50 caracteres.")
+	@Size(min=1, message = "El nombre debe tener entre 1 y 15 caracteres.")
 //    @NotBlank(message = "Este campo no puede estar vacío.")
 	@Column(name = "nombre")
 	private String nombre;
