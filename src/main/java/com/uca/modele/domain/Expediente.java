@@ -1,26 +1,21 @@
 package com.uca.modele.domain;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(schema = "public", name = "expediente")
@@ -42,13 +37,11 @@ public class Expediente {
 	@Column(name = "apellidos")
 	private String apellidos;
 
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
+	@NotNull(message = "No puede estar vacio")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 
-	@NotEmpty(message = "No puede estar vacio")
-	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "edad")
 	private Integer edad;
 
@@ -56,15 +49,20 @@ public class Expediente {
 	@Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres")
 	@Column(name = "direccion")
 	private String direccion;
+	
+	@NotEmpty(message = "No puede estar vacio")
+	@Size(min = 9, max = 9, message = "Debe contener 9 caracteres")
+	@Column(name = "carnet_min")
+	private String numerocarnet;
 
 	@Column(name = "telefono_fijo")
-    @Pattern(regexp = "^[0-9]{8}$", message = "El número de teléfono debe contener exactamente 8 dígitos.")
-    @NotBlank(message = "Este campo no puede estar vacío.")
+	@Range(min = 00000001,max=99999999, message = "El número de teléfono debe contener exactamente 8 dígitos.")
+	@NotNull(message = "Este campo no puede estar vacío.")
 	private Integer telefonoFijo;
 
 	@Column(name = "telefono_movil")
-	@Pattern(regexp = "^[0-9]{8}$", message = "El número de teléfono debe contener exactamente 8 dígitos.")
-	@NotBlank(message = "Este campo no puede estar vacío.")
+	@Range(min = 00000001,max=99999999, message = "El número de teléfono debe contener exactamente 8 dígitos.")
+	@NotNull(message = "Este campo no puede estar vacío.")
 	private Integer telefonoMovil;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -84,6 +82,42 @@ public class Expediente {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_municipio")
 	private Municipio municipio;
+	
+	@OneToMany(mappedBy = "expediente", fetch = FetchType.LAZY)
+	private List<MateriasxAlumno> materiasxEstudiantes;
+	
+	@Transient
+    private Integer aprobadas;
+
+    @Transient
+    private Integer reprobadas;
+
+    @Transient
+    private Float promedio;       
+
+	public Integer getAprobadas() {
+		return aprobadas;
+	}
+
+	public void setAprobadas(Integer aprobadas) {
+		this.aprobadas = aprobadas;
+	}
+
+	public Integer getReprobadas() {
+		return reprobadas;
+	}
+
+	public void setReprobadas(Integer reprobadas) {
+		this.reprobadas = reprobadas;
+	}
+
+	public Float getPromedio() {
+		return promedio;
+	}
+
+	public void setPromedio(Float promedio) {
+		this.promedio = promedio;
+	}
 
 	public Escuelas getEscuela() {
 		return escuela;
@@ -101,17 +135,14 @@ public class Expediente {
 		this.municipio = municipio;
 	}
 
-	@OneToMany(mappedBy = "expediente", fetch = FetchType.LAZY)
-	private List<MateriasxAlumno> materiasxEstudiantes;
-
 	public Expediente() {}
 
 	public Integer getIdExpediente() {
 		return idExpediente;
 	}
 
-	public void setIdExpediente(Integer id_expediente) {
-		this.idExpediente = id_expediente;
+	public void setIdExpediente(Integer idExpediente) {
+		this.idExpediente = idExpediente;
 	}
 
 	public String getNombres() {
@@ -168,40 +199,32 @@ public class Expediente {
 		return telefonoFijo;
 	}
 
-	public void setTelefonoFijo(Integer telefono_fijo) {
-		this.telefonoFijo = telefono_fijo;
+	public void setTelefonoFijo(Integer telefonoFijo) {
+		this.telefonoFijo = telefonoFijo;
 	}
 
 	public Integer getTelefonoMovil() {
 		return telefonoMovil;
 	}
 
-	public void setTelefonoMovil(Integer telefono_movil) {
-		this.telefonoMovil = telefono_movil;
-	}
-
-	public Escuelas getIdEscuela() {
-		return escuela;
-	}
-
-	public void setIdEscuela(Escuelas id_escuela) {
-		this.escuela = id_escuela;
+	public void setTelefonoMovil(Integer telefonoMovil) {
+		this.telefonoMovil = telefonoMovil;
 	}
 
 	public String getNombrePadre() {
 		return nombrePadre;
 	}
 
-	public void setNombrePadre(String nombre_padre) {
-		this.nombrePadre = nombre_padre;
+	public void setNombrePadre(String nombrePadre) {
+		this.nombrePadre = nombrePadre;
 	}
 
 	public String getNombreMadre() {
 		return nombreMadre;
 	}
 
-	public void setNombreMadre(String nombre_madre) {
-		this.nombreMadre = nombre_madre;
+	public void setNombreMadre(String nombreMadre) {
+		this.nombreMadre = nombreMadre;
 	}
 
 	public List<MateriasxAlumno> getMateriasxEstudiantes() {
@@ -210,6 +233,25 @@ public class Expediente {
 
 	public void setMateriasxEstudiantes(List<MateriasxAlumno> materiasxEstudiantes) {
 		this.materiasxEstudiantes = materiasxEstudiantes;
+	}
+
+	public String getNumerocarnet() {
+		return numerocarnet;
+	}
+
+	public void setNumerocarnet(String numerocarnet) {
+		this.numerocarnet = numerocarnet;
+	}
+	
+	public String getFechaDelegate(){
+		if(this.fechaNacimiento == null){
+			return "";
+		}
+		else{
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String shortdate = sdf.format(this.fechaNacimiento.getTime());
+			return shortdate;
+		}
 	}
 
 

@@ -15,14 +15,17 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Integer>
 
 	public List<Expediente> findAll(Sort sort);
 	
-	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE nombre = ?1")
-	public Expediente mostrarPorNombre(String cadena) throws DataAccessException;
+	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE nombres = ?1")
+	public List<Expediente> mostrarPorNombre(String cadena) throws DataAccessException;
 	
-	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE apellido = ?1")
-	public Expediente mostrarPorApellido(String cadena) throws DataAccessException;
+	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE apellidos = ?1")
+	public List<Expediente> mostrarPorApellido(String cadena) throws DataAccessException;
+	
+	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE nombres = ?1 and apellidos = ?2")
+	public List<Expediente> mostrarPorNombreyApellido(String nombre, String apellido) throws DataAccessException;
 	
 	@Query(nativeQuery=true, value="SELECT * FROM public.expediente WHERE id_expediente = ?1")
 	public Expediente findByIdExp(Integer codigo) throws DataAccessException;
-	
+
 
 }

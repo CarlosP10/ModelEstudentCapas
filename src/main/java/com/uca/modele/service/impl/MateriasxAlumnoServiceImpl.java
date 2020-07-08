@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +30,8 @@ public class MateriasxAlumnoServiceImpl implements MateriasxAlumnoService{
 	@PersistenceContext(unitName = "modele")
 	EntityManager entityManager;
 
-	public List<MateriasxAlumno> findAll() throws DataAccessException {
-		return materiasxAlumnoRepository.findAll();
+	public List<MateriasxAlumno> findAllMatbyIdExp(Integer id) throws DataAccessException {
+		return materiasxAlumnoRepository.findMateriasxAlumnoByIdExpediente(id);
 	}
 
 	public List<MateriasxAlumno> findAll(Sort sort) {
@@ -44,6 +46,26 @@ public class MateriasxAlumnoServiceImpl implements MateriasxAlumnoService{
 	public void save(MateriasxAlumno c) throws DataAccessException {
 		materiasxAlumnoDao.save(c);
 		
+	}
+
+	public Page<MateriasxAlumno> findAll(Pageable page) throws DataAccessException {
+		return materiasxAlumnoRepository.findAll(page);
+	}
+
+	public Long countAll() {
+		return materiasxAlumnoRepository.count();
+	}
+
+	public Integer getAprobadas(Integer id) throws DataAccessException {
+		return materiasxAlumnoRepository.getAprobadas(id);
+	}
+
+	public Integer getReprobadas(Integer id) throws DataAccessException {
+		return materiasxAlumnoRepository.getReprobadas(id);
+	}
+
+	public Float getProm(Integer id) throws DataAccessException {
+		return materiasxAlumnoRepository.getPromedio(id);
 	}
 
 }

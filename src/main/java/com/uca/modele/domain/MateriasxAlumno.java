@@ -10,8 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(schema = "public", name = "materiaxalumno")
@@ -35,14 +42,17 @@ public class MateriasxAlumno {
 	@JoinColumn(name = "id_materia")
 	private Materias materia;
 	
-    @NotBlank(message = "Este campo no puede estar vacío.")
+    @NotNull(message = "Este campo no puede estar vacío.")
+    @Range(min = 2001,max=2021, message = "El año debe ser desde 2001 hasta 2021.")
 	@Column(name = "anio")
 	private Integer anio;
 	
-    @Size(min=0, message = "El nombre debe tener entre 1 y 50 caracteres.")
-    @NotBlank(message = "Este campo no puede estar vacío.")
+    @DecimalMin(value = "0.0", message = "Debe ser decimal")
+    @Digits(integer = 2, fraction = 2, message = "Debe ser decimal")
+    @Max(value = 10)
+    @NotNull(message = "Este campo no puede estar vacío.")
 	@Column(name = "nota")
-	private Double nota;
+	private Double nota;	
     
     public MateriasxAlumno() {}
 
@@ -50,32 +60,32 @@ public class MateriasxAlumno {
 		return idMateriaexp;
 	}
 
-	public void setIdMateriaexp(Integer id_materiaexp) {
-		this.idMateriaexp = id_materiaexp;
+	public void setIdMateriaexp(Integer idMateriaexp) {
+		this.idMateriaexp = idMateriaexp;
 	}
 
-	public Expediente getIdExpediente() {
+	public Expediente getExpediente() {
 		return expediente;
 	}
 
-	public void setIdExpediente(Expediente id_expediente) {
-		this.expediente = id_expediente;
+	public void setExpediente(Expediente expediente) {
+		this.expediente = expediente;
 	}
 
-	public Ciclo getIdCiclo() {
+	public Ciclo getCiclo() {
 		return ciclo;
 	}
 
-	public void setIdCiclo(Ciclo id_ciclo) {
-		this.ciclo = id_ciclo;
+	public void setCiclo(Ciclo ciclo) {
+		this.ciclo = ciclo;
 	}
 
-	public Materias getIdMateria() {
+	public Materias getMateria() {
 		return materia;
 	}
 
-	public void setIdMateria(Materias id_materia) {
-		this.materia = id_materia;
+	public void setMateria(Materias materia) {
+		this.materia = materia;
 	}
 
 	public Integer getAnio() {
@@ -93,9 +103,14 @@ public class MateriasxAlumno {
 	public void setNota(Double nota) {
 		this.nota = nota;
 	}
-    
-    
-    
+	
+	public String getResultadoDelegate() {
+		if(this.nota >= 6) {
+			return "Aprobado";
+		} else {
+			return "Reprobado";
+		}
+	}   
 
 }
 

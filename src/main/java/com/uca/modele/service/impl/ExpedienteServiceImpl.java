@@ -1,5 +1,6 @@
 package com.uca.modele.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.modele.dao.ExpedienteDAO;
 import com.uca.modele.domain.Expediente;
+import com.uca.modele.domain.MateriasxAlumno;
 import com.uca.modele.repository.ExpedienteRepository;
 import com.uca.modele.service.ExpedienteService;
 
@@ -45,14 +47,34 @@ public class ExpedienteServiceImpl implements ExpedienteService{
 		 expedienteDao.save(c);		
 	}
 
-	public Expediente findByName(String nombre) throws DataAccessException {
+	public List<Expediente> findByName(String nombre) throws DataAccessException {
 		return expedienteRepository.mostrarPorNombre(nombre);
 	}
 
-	public Expediente findByLastName(String aoellido) throws DataAccessException {
+	public List<Expediente> findByLastName(String aoellido) throws DataAccessException {
 		return expedienteRepository.mostrarPorApellido(aoellido);
 	}
 
+	@Override
+	public List<Expediente> getQueryMethod(Integer tipo, String valor) throws Exception {
+		List<Expediente> resultado = null;
+		switch (tipo) {
+		case 1:
+			resultado = expedienteRepository.mostrarPorNombre(valor);
+			break;
+		case 2:
+			resultado = expedienteRepository.mostrarPorApellido(valor);
+			break;
 
+		default:
+			resultado = new ArrayList<>();
+			break;
+		}
+		return resultado;
+	}
+
+	public Long countAll() {
+		return expedienteRepository.count();
+	}
 
 }

@@ -1,67 +1,115 @@
 <!DOCTYPE html>
-<html xmlms:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
 <title>Agregar Nuevo Expediente</title>
-</head>
-<body>
-	<form th:action="@{/modificarExp}" th:object="${expediente}" method="post">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-		<h1 class="display-4">Ingresar Expediente</h1>
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  
+  <!-- Bootstrap core JavaScript-->
+  <script type="text/javascript" th:src="@{/js/jquery/jquery.min.js}"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Include Bootstrap Datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
+  
+  <link rel="stylesheet" type="text/css" media="all" href="../css/ui/sweet-alert.css" th:href="@{/css/ui/sweetalert.css}" />
+  <script type="text/javascript" th:src="@{/js/ui/sweetalert.min.js}"></script>
+</head>
+<script type="text/javascript">
+	
+</script>
+<body>
+	<form th:action="@{/guardarExpediente}" th:object="${expediente}" method="post">
+
+		<h1 class="display-4">Editar Expediente</h1>
 		
 		<div class="form group">
 		
-			<input type="hidden" th:field="${expediente.id_expediente}" th:value="${expediente.id_expediente}">
+			<input type="hidden" th:field="*{idExpediente}" >
 			<label>Nombres :</label><br>
-			<input class="form-control" type="text" th:field="${expediente.nombres}" th:value="${expediente.nombres}"><br>
-			<span th:errors="${expediente.nombres}" style="color:  #E81505;"></span><br>
+			<input class="form-control" type="text" th:field="*{nombres}" ><br>
+			<span th:errors="*{nombres}" style="color:  #E81505;"></span><br>
 			
 			<label>Apellidos:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.apellidos}" th:value="${expediente.apellidos}"><br>
-			<span th:errors="${expediente.apellidos}" style="color:  #E81505;"></span><br>
+			<input class="form-control" type="text" th:field="*{apellidos}" ><br>
+			<span th:errors="*{apellidos}" style="color:  #E81505;"></span><br>
 			
 			<label>Numero de Carnet de minoridad:</label><br>
-			<input class="form-control" type="number" th:field="${expediente.numerocarnet}" th:value="${expediente.numerocarnet}"><br>
-			<span th:errors="${expediente.numerocarnet}" style="color:  #E81505;"></span><br>
+			<input class="form-control" type="text" th:field="*{numerocarnet}" ><br>
+			<span th:errors="*{numerocarnet}" style="color:  #E81505;"></span><br>
 			
 			<label>Fecha de Nacimiento:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.fecha_nacimiento}" th:value="${expediente.fecha_nacimiento}"><br>
-			<span th:errors="${expediente.fecha_nacimiento}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="text" th:field="*{fechaNacimiento}" ><br>
+			<span th:errors="*{fechaNacimiento}" style="color:  #E81505;"></span>
+			<script type="text/javascript">
+		        $(function () {
+		            $('#fechaNacimiento').datepicker({
+		            	format: 'dd/mm/yyyy'
+		            });
+		        });
+		    </script>
+			<br><br>
 			
 			<label>Edad:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.edad}" th:value="${expediente.edad}"><br>
-			<span th:errors="${expediente.edad}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="text" th:field="*{edad}" readonly><br>
+			<span th:errors="*{edad}" style="color:  #E81505;"></span><br><br>
 			
 			<label>Direccion:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.direccion}" th:value="${expediente.direccion}"><br>
-			<span th:errors="${expediente.direccion}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="text" th:field="*{direccion}" ><br>
+			<span th:errors="*{direccion}" style="color:  #E81505;"></span><br><br>
 			
 			<label>Telefono fijo:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.telefono_fijo}" th:value="${expediente.telefono_fijo}"><br>
-			<span th:errors="${expediente.telefono_fijo}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="number" th:field="*{telefonoFijo}" ><br>
+			<span th:errors="*{telefonoFijo}" style="color:  #E81505;"></span><br><br>
 			
 			<label>Telefono movil:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.telefono_movil}" th:value="${expediente.telefono_movil}"><br>
-			<span th:errors="${expediente.telefono_movil}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="number" th:field="*{telefonoMovil}" ><br>
+			<span th:errors="*{telefonoMovil}" style="color:  #E81505;"></span><br><br>
 			
-			<label>Institucion o centro escolar de procedencia:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.id_escuela}" th:value="${expediente.id_escuela}"><br>
-			<span th:errors="${expediente.id_escuela}" style="color:  #E81505;"></span><br><br>
+			<label for= "escuela">Institucion o centro escolar de procedencia:</label><br>
+			<!-- <input class="form-control" type="text" th:field="*{escuela.nombre}" readonly><br> -->
+			<select th:field="*{escuela.idEscuela}">
+       			<option th:each="d: ${escuelas}" th:value="${d.idEscuela}" th:text="${d.nombre}">
+   			</select><br><br>
 			
 			<label>Nombre del Padre:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.nombre_padre}" th:value="${expediente.nombre_padre}"><br>
-			<span th:errors="${expediente.nombre_padre}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="text" th:field="*{nombrePadre}" ><br>
+			<span th:errors="*{nombrePadre}" style="color:  #E81505;"></span><br><br>
 			
 			<label>Nombre de la Madre:</label><br>
-			<input class="form-control" type="text" th:field="${expediente.nombre_madre}" th:value="${expediente.nombre_madre}"><br>
-			<span th:errors="${expediente.nombre_madre}" style="color:  #E81505;"></span><br><br>
+			<input class="form-control" type="text" th:field="*{nombreMadre}" ><br>
+			<span th:errors="*{nombreMadre}" style="color:  #E81505;"></span><br><br>
 			
 		</div>
 		
 		<input type="submit" class="btn btn-success" value="Guardar expediente">
 		
-		<input type="submit" class="btn btn-primary" value="Regresar">
+		<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./expedientesNombre'" /><br> <br>
 		
 	</form><br>
 

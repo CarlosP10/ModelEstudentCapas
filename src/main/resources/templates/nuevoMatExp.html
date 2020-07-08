@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Modificar Materia de Alumno</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  
+  <!-- Bootstrap core JavaScript-->
+  <script type="text/javascript" th:src="@{/js/jquery/jquery.min.js}"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Include Bootstrap Datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
+  
+  <link rel="stylesheet" type="text/css" media="all" href="../css/ui/sweet-alert.css" th:href="@{/css/ui/sweetalert.css}" />
+  <script type="text/javascript" th:src="@{/js/ui/sweetalert.min.js}"></script>
+</head>
+<script type="text/javascript">
+	
+</script>
+<body>
+
+<div>
+    <h1> Editar Materia de Alumno </h1>
+    <form th:action="@{/guardarMExp}" th:object="${mxAlumno}" method="post">
+        <table>
+
+            <input class="form-control" type="hidden" id="idMateriaexp" th:field="*{idMateriaexp}">
+
+            <tr>
+                <td><label for="expediente">Expediente: </label></td>
+                <td><input class="form-control" type="text" id="expediente" th:field="*{expediente.idExpediente}" readonly><br></td>
+            </tr>
+             <tr>
+                <td><label for="ciclo">Ciclo: </label></td>
+                <td><select th:field="*{ciclo.idCiclo}">
+            		<option th:each="d: ${ciclos}" th:value="${d.idCiclo}" th:text="${d.ciclo}">
+        			</select><br><span th:errors="*{ciclo}" style="color:  #E81505;"></span>
+       			</td>
+            </tr>            
+            <tr>
+                <td><label for="materia">Materia: </label></td>
+                <td><select th:field="*{materia.idMateria}">
+            		<option th:each="m: ${materias}" th:value="${m.idMateria}" th:text="${m.nombre}">
+        			</select><br><span th:errors="*{materia}" style="color:  #E81505;"></span>
+       			</td>
+            </tr>
+            <tr>
+                <td><label for="anio">A&ntilde;o: </label></td>
+                <td><input class="form-control" type="number" id="anio" th:field="*{anio}"><br><span th:errors="*{anio}" style="color:  #E81505;"></span></td>
+            </tr>
+            <tr>
+                <td><label>Nota:</label></td>
+                <td><input class="form-control" type="number" step="0.1" id="nota" th:field="*{nota}"><br><span th:errors="*{nota}" style="color:  #E81505;"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" class="btn btn-success" value="Guardar Cambios">
+                <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./materiasExp'" /><br> <br>
+                </td>
+            </tr>
+            
+        </table>        
+    </form>
+</div>
+
+</body>
+</html>

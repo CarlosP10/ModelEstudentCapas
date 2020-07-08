@@ -45,7 +45,6 @@ public class Escuelas {
     @JoinColumn(name = "id_municipio")
 	private Municipio municipio; 
 		
-	@JsonIgnore
 	@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
     private List<Expediente> expedientes;
 

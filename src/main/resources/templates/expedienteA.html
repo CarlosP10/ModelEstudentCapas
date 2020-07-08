@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	    <div id="content-wrapper">
+	<div id="content-wrapper">
 
-      <div class="container-fluid">
+		<div class="container-fluid">
 			<h1 class="mt-4">Expediente de Alumnos</h1>
 			<div class="card mb-4">
-            	<div class="card-body">
-                <form method="post" th:action="@{/expedienteA}" th:object="${expediente}">
-                                  <div class="form-group">
-                    <div class="form-row">
-                      <span>Buscar alumno por:&nbsp;&nbsp;&nbsp;</span>
-                      <select name="estado" class="form-control" style="width: 300px;">
-                        <option value="true">Nombre</option>
-                        <option value="false">Apellido</option>
-                      </select>
-                    </div>
-                  </div>
-	            		<div class="form-group">
-	            			<input class="form-control py-4" id="id_expediente" type="text" placeholder="Valor de busqueda:" style="width: 400px" name="expediente" />
-	            		</div>
-                      <div class="col">
-                        <input type="submit" class="btn btn-primary" value="Buscar">
-                      </div>
-                      <div class="col">
-                        <br><input type="submit" class="btn btn-success" value="Agregar nuevo Expediente" onclick="window.location.href='/agregarEN'">
-                      </div>
-                      <div class="col">
-                        <br><input type="submit" class="btn btn-success" value="Agregar nueva Materia" onclick="window.location.href='/agregarNuevaMateria'">
-                      </div>
-	                </form>
-            	</div>
-            </div>
-            
-            
-      </div>
-      <!-- /.container-fluid -->
+				<div class="card-body">
+					<form method="post" th:action="@{/expedientesNombre}"
+						th:object="${expediente}">
+						<div class="form-group">
+							<div class="form-row">
+								<span>Buscar alumno por:&nbsp;&nbsp;&nbsp;</span> <select
+									 class="form-control" name="tipo" style="width: 300px;">
+									<option value="1">Nombre</option>
+									<option value="2">Apellido</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<input class="form-control py-4" id="valor1" type="text"
+								placeholder="Valor de busqueda:" style="width: 400px"
+								name="valor1" />
+						</div>
+						<div class="col">
+							<input type="submit" class="btn btn-primary" value="Buscar">
+						</div>
+						<div class="col">
+							<br>
+							<input type="submit" class="btn btn-success"
+								value="Agregar nuevo Expediente"
+								onclick="window.location.href='/agregarEN'">
+						</div>
+						<div class="col">
+							<br>
+							<input type="submit" class="btn btn-success"
+								value="Agregar nueva Materia"
+								onclick="window.location.href='/agregarNuevaMateria'">
+						</div>
+					</form>
+				</div>
+			</div>
 
-    </div>
-    <!-- /.content-wrapper -->
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- /.content-wrapper -->
 </body>
 </html>
