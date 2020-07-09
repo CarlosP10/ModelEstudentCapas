@@ -8,7 +8,7 @@ public class CoordiController {
 	
 	@RequestMapping("/indexCoordi")
 	public String indexAdmin() {
-		return "pantallaInicialExpediente";
+		return "expedienteA";
 	}
 
 }
