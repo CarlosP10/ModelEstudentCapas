@@ -35,44 +35,47 @@
 			<h1 class="w3-xxlarge">DREVBOKS</h1>
 		</div>
 	</header>
-	<!-- Page content -->
+	<!-- Page content -->	
+
 	<div class="w3-content" style="max-width: 1100px">
 
 		<!-- Default form login -->
 		<div class="w3-container w3-padding-64" id="iniciarS">
-			<form class="text-center border border-light p-5" action="@{/login}">
+		
+			<form class="text-center border border-light p-5" action="@{/iniciarSesion}">
 
-				<h1>Modulo de Administracion
-					de Estudiantes </h1><br>
+				<h1>Modulo de Administracion de Estudiantes </h1><br>
+				
 				<p class="h4 mb-4">Iniciar Sesion</p>
 
-    <!-- Email -->
-    <input type="text" id="nombre_usuario" class="form-control mb-4"
-					placeholder="Usuario" name="nombre_usuario">
-
-    <!-- Password -->
-    <input type="password" id="contrasenia" class="form-control mb-4"
-					placeholder="Contraseña" name="contrasenia">
-
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input"
-								id="defaultLoginFormRemember">
-                <label class="custom-control-label"
-								for="defaultLoginFormRemember">Remember me</label>
-            </div>
-        </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="@{/registrarse}">Registrarse</a>
-        </div>
-    </div>
-
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesion</button>    
-    </p>
+			    <!-- Email -->
+			    <input type="text" id="nombre_usuario" class="form-control mb-4"
+								placeholder="Usuario" name="nombre_usuario">
+			
+			    <!-- Password -->
+			    <input type="password" id="contrasenia" class="form-control mb-4"
+								placeholder="Contraseña" name="contrasenia">
+			
+			    <div class="d-flex justify-content-around">
+			        <div>
+			            <!-- Remember me -->
+			            <div class="custom-control custom-checkbox">
+			                <input type="checkbox" class="custom-control-input"
+											id="defaultLoginFormRemember">
+			                <label class="custom-control-label"
+											for="defaultLoginFormRemember">Remember me</label>
+			            </div>
+			        </div>
+			        <div>
+			            <!-- Forgot password -->
+			            <a href="/registro?tipo=0" class="text-dark">Registrarse</a>
+			            
+			        </div>
+			    </div>
+			
+			    <!-- Sign in button -->
+			    <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesion</button>    
+			    </p>
 
 </form>
 </div>
@@ -103,5 +106,8 @@
   <p>Programacion N Capas </a>
 		</p>
 </footer>
+
+		<div class="alert alert-danger" role="alert" th:if="${mensaje != null}" th:text="${mensaje}">
+
 </body>
 </html>

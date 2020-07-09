@@ -65,6 +65,7 @@
 				<a href="./cuentaTable" class="w3-bar-item w3-button">Catalogo usuarios</a>
 				<a href="./materiasTable" class="w3-bar-item w3-button">Catalogo materias</a>
 				<a href="./escuelasTable" class="w3-bar-item w3-button">Catalogo escuelas</a>
+				<a href="./index" class="w3-bar-item w3-button">Cerrar Sesion</a>
 			</div>
 		</div>
 	</div>
@@ -73,7 +74,7 @@
 <div>
     <h1> Editar Centro Educativo </h1><br> <br>   
     <form method="post" th:action="@{/guardarEscuelasn}" th:object="${escuelas}" >
-    	<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" /><br> <br>
+ 
         <input class="form-control" type="hidden" th:field="*{idEscuela}">
         
         <td><label class="col-sm-2 col-form-label">Nombre: </label>
@@ -90,6 +91,8 @@
         <label>Estado:</label>
         <input type="checkbox" id="estado"  th:field="*{estado}" > Activo
         <input class="btn btn-success" type="submit" value="Guardar Cambios">
+        
+        <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" />
 
     </form>
 </div>

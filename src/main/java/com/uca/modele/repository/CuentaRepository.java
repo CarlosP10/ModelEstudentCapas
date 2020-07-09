@@ -2,6 +2,7 @@ package com.uca.modele.repository;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,7 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer>{
     public Cuenta findCuentateById(@Param("cuenta") Integer cuenta);
 
 	public List<Cuenta> findAll(Sort sort);
+	
+	@Query(nativeQuery = true, value = "select * from public.cuenta where nombre_usuario= ?1 and contrasenia = ?2")
+	public Cuenta login(String user, String pass) throws DataAccessException;
 }

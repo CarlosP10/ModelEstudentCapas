@@ -23,5 +23,8 @@ public interface CuentaService {
 	public Cuenta findOne(Integer codigo) throws DataAccessException;
 
 	public void save(Cuenta c) throws DataAccessException;	
+	
+	Cuenta login(String user, String pass) throws DataAccessException;
+
 
 }
