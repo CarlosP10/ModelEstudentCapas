@@ -80,6 +80,7 @@
 								th:value="*{idExpediente}">
 								<i class="fas fa-pencil-alt"></i>
 							</button>
+							<input class="form-control" type="hidden" id="idExp" th:value="*{idExpediente}" th:name="idExp">
 						</form>
 					</td>
 					<td th:text="${e.nombres}" />
@@ -94,13 +95,6 @@
 
 
 	<br>
-	<br>
-
-	<div class="card-body">
-		<input type="button" class="btn btn-warning"
-			value="Agregar Materia a Expediente"
-			onclick="location.href='./nuevaMExp'">
-	</div>
 	<br>
 
 	<div class="card-body">

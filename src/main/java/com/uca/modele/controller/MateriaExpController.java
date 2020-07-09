@@ -44,7 +44,11 @@ public class MateriaExpController {
 	public ModelAndView MateriaExpTable(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		List<MateriasxAlumno> c = materiasxAlumnoService.findAllMatbyIdExp(id);
+		for (MateriasxAlumno m : c) {
+			System.out.print(id + "aca no es!");
+		}
 		mav.addObject("expedientes", c);
+		mav.addObject("idExp", id);
 		mav.setViewName("materiaExp");
 		return mav;
 	}
@@ -71,6 +75,7 @@ public class MateriaExpController {
 		mav.addObject("materias", materias);
 		mav.addObject("ciclos", ciclos);
 		mav.addObject("mxAlumno", mxAlumno);
+		mav.addObject("idMateriaexp", id);
 		mav.setViewName("modificarMatExp");
 		return mav;
 	}
@@ -78,10 +83,9 @@ public class MateriaExpController {
 	
 	//agregar nueva materia para ese mismo expediente
 	@RequestMapping("/nuevaMExp")
-	public ModelAndView nuevaMExp(@RequestParam Integer id) {
+	public ModelAndView nuevaMExp(@RequestParam Integer idExp) {
 		ModelAndView mav = new ModelAndView();
-		MateriasxAlumno mxAlumnos = materiasxAlumnoService.findOne(id);
-	//	MateriasxAlumno mxAlumno = new MateriasxAlumno();
+		MateriasxAlumno mxAlumnos = materiasxAlumnoService.findOne(idExp);
 		List<Ciclo> ciclos = null;
 		List<Materias> materias = null;
 		try {
@@ -91,11 +95,9 @@ public class MateriaExpController {
 		} catch (Exception e) {
 			 e.printStackTrace();
 		}
-		System.out.println(id);
 		mav.addObject("materias", materias);
 		mav.addObject("ciclos", ciclos);
 		mav.addObject("mxAlumno", mxAlumnos);
-		mav.addObject("mxAlumno", id);
 		mav.setViewName("nuevoMatExp");
 		return mav;
 	}
