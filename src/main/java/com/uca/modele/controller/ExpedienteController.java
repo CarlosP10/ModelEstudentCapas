@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.modele.domain.Escuelas;
 import com.uca.modele.domain.Expediente;
+import com.uca.modele.domain.Materias;
+import com.uca.modele.domain.Municipio;
 import com.uca.modele.service.EscuelasService;
 import com.uca.modele.service.ExpedienteService;
 import com.uca.modele.service.MateriasxAlumnoService;
@@ -109,5 +111,36 @@ public class ExpedienteController {
 			
 		return mav;
 	}
+	
+	@RequestMapping("/ingresarExpediente")
+	public ModelAndView ingresarExpediente() 
+	{
+		ModelAndView mav = new ModelAndView();
+		Expediente expediente = new Expediente();
+		
+		mav.addObject("expediente", expediente);
+		mav.setViewName("nuevoExp");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/guardarExpedienteN")
+	public ModelAndView save(@Valid @ModelAttribute Expediente expediente, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+
+		if(result.hasErrors()) 
+		{
+			mav.setViewName("ingresarCategoria");
+		}
+		else 
+		{
+			expedienteService.save(expediente);
+			mav.addObject("exitoCategoria", true);
+			mav.setViewName("expedienteA");
+		}
+		
+		return mav;
+	}
+	
 
 }

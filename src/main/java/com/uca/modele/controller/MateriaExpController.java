@@ -6,10 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,13 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.modele.domain.Ciclo;
-import com.uca.modele.domain.Escuelas;
 import com.uca.modele.domain.Expediente;
 import com.uca.modele.domain.Materias;
 import com.uca.modele.domain.MateriasxAlumno;
-import com.uca.modele.domain.Municipio;
 import com.uca.modele.dto.TableDTO;
-import com.uca.modele.repository.MateriasxAlumnoRepository;
 import com.uca.modele.service.CicloService;
 import com.uca.modele.service.ExpedienteService;
 import com.uca.modele.service.MateriasService;
@@ -60,6 +54,7 @@ public class MateriaExpController {
 		return "expedienteMate";
 	}
 	
+	//editar materia existente para equis estudiante
 	@RequestMapping("/editarMExp")
 	public ModelAndView buscar(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
@@ -72,6 +67,7 @@ public class MateriaExpController {
 		} catch (Exception e) {
 			 e.printStackTrace();
 		}
+		System.out.println(id);
 		mav.addObject("materias", materias);
 		mav.addObject("ciclos", ciclos);
 		mav.addObject("mxAlumno", mxAlumno);
@@ -79,22 +75,27 @@ public class MateriaExpController {
 		return mav;
 	}
 	
+	
+	//agregar nueva materia para ese mismo expediente
 	@RequestMapping("/nuevaMExp")
-	public ModelAndView nuevoMatExp() {//@RequestParam Integer id
+	public ModelAndView nuevaMExp(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
-		MateriasxAlumno mxAlumno = new MateriasxAlumno();
+		MateriasxAlumno mxAlumnos = materiasxAlumnoService.findOne(id);
+	//	MateriasxAlumno mxAlumno = new MateriasxAlumno();
 		List<Ciclo> ciclos = null;
 		List<Materias> materias = null;
 		try {
 			ciclos = cicloService.findAll();
 			materias = materiasService.findAll();
+			
 		} catch (Exception e) {
 			 e.printStackTrace();
 		}
-//		mav.addObject("id", id); //Para saber a que estudiante se le ingresara una nueva materia
+		System.out.println(id);
 		mav.addObject("materias", materias);
 		mav.addObject("ciclos", ciclos);
-		mav.addObject("mxAlumno", mxAlumno);
+		mav.addObject("mxAlumno", mxAlumnos);
+		mav.addObject("mxAlumno", id);
 		mav.setViewName("nuevoMatExp");
 		return mav;
 	}
@@ -141,6 +142,7 @@ public class MateriaExpController {
 		return dto;
 	}
 	
+	//guardar para la materia editada
 	@RequestMapping("/guardarMExp")
 	public ModelAndView guardarMExp(@Valid @ModelAttribute MateriasxAlumno mxAlumno,BindingResult result) {
 		ModelAndView mav = new ModelAndView();
@@ -155,11 +157,35 @@ public class MateriaExpController {
 			}
 			mav.addObject("materias", materias);
 			mav.addObject("ciclos", ciclos);
-//			mav.setViewName("modificarCE");
-			mav.setViewName("nuevoMatExp");
+			mav.setViewName("modificarMatExp");
 		}else {
 			materiasxAlumnoService.save(mxAlumno);
-			mav.setViewName("materiaExp");
+			mav.setViewName("expedienteA");
+			mav.addObject("resultado", 1);			
+		}
+		return mav;
+	}
+	
+	
+	//guardar  para la materia nueva que se acaba de crear para el estudiante
+	@RequestMapping("/guardarMExpN")
+	public ModelAndView guardarMExpN(@Valid @ModelAttribute MateriasxAlumno id,BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if (result.hasErrors()) {
+			List<Ciclo> ciclos = null;
+			List<Materias> materias = null;
+			try {
+				ciclos = cicloService.findAll();
+				materias = materiasService.findAll();
+			} catch (Exception e) {
+				 e.printStackTrace();
+			}
+			mav.addObject("materias", materias);
+			mav.addObject("ciclos", ciclos);
+			mav.setViewName("nuevoMatExp");
+		}else {
+			materiasxAlumnoService.save(id);
+			mav.setViewName("expedienteA");
 			mav.addObject("resultado", 1);			
 		}
 		return mav;

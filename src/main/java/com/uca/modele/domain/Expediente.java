@@ -87,6 +87,17 @@ public class Expediente {
 	private List<MateriasxAlumno> materiasxEstudiantes;
 	
 	@Transient
+    private Integer cEscuela;
+	
+	public Integer getcEscuela() {
+		return cEscuela;
+	}
+
+	public void setcEscuela(Integer cEscuela) {
+		this.cEscuela = cEscuela;
+	}
+
+	@Transient
     private Integer aprobadas;
 
     @Transient

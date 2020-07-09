@@ -34,14 +34,8 @@
 </head>
 
 <body>
-    <div class="card-body">
-      <input type="button" class="btn btn-warning" value="Nuevo Materia al Estudiante" onclick="location.href='./nuevaMExp'"></div>
-    </div><br>
-	<p th:if="${resultado == 1}" class="mb-0">Escuela guardado con &eacute;xito</p><br/>
-		<section class="d-flex">
-		<div class="container align-self-center">
-			<div class="row p-3">
-				<div class="col-12">
+    
+	<p th:if="${resultado == 1}" class="mb-0">Materia guardada con &eacute;xito</p><br/>
 					<table class="table table-bordered" id="tablaExpM">
 						<thead class="thead-dark">
 							<tr>
@@ -74,19 +68,9 @@
 							</th:block>
 						</tbody>
 					</table>
-
-				</div>
-			</div>
-		</div>
-	</section>
 	
 	<br>
 	<br>
-
-	
-    <div class="card-body">
-      <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./indexAdmin'" /><br> <br>
-    </div>
 
 </body>
 </html>

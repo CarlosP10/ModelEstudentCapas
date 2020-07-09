@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Modificar Materia de Alumno</title>
+    <title>Agregar Materia a Expediente</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <!-- Custom fonts for this template-->
@@ -46,23 +46,32 @@
 <body>
 
 <div>
-    <h1> Editar Materia de Alumno </h1>
-    <form th:action="@{/guardarMExp}" th:object="${mxAlumno}" method="post">
-        <table>
+	<div class="form-group col-md-6">
+    <h1> Agregar Materia a Expediente </h1>
+    </div>
+    <form th:action="@{/guardarMExpN}" th:object="${mxAlumno}" method="post">
+    
 
             <input class="form-control" type="hidden" id="idMateriaexp" th:field="*{idMateriaexp}">
 
+			<div class="form-group col-md-6">
             <tr>
                 <td><label for="expediente">Expediente: </label></td>
                 <td><input class="form-control" type="text" id="expediente" th:field="*{expediente.idExpediente}" readonly><br></td>
             </tr>
+            </div>
+            
+            <div class="form-group col-md-6">
              <tr>
                 <td><label for="ciclo">Ciclo: </label></td>
                 <td><select th:field="*{ciclo.idCiclo}">
             		<option th:each="d: ${ciclos}" th:value="${d.idCiclo}" th:text="${d.ciclo}">
         			</select><br><span th:errors="*{ciclo}" style="color:  #E81505;"></span>
        			</td>
-            </tr>            
+            </tr> 
+            </div>  
+            
+            <div class="form-group col-md-6">         
             <tr>
                 <td><label for="materia">Materia: </label></td>
                 <td><select th:field="*{materia.idMateria}">
@@ -70,21 +79,25 @@
         			</select><br><span th:errors="*{materia}" style="color:  #E81505;"></span>
        			</td>
             </tr>
+            </div>
+            
+            <div class="form-group col-md-6">
             <tr>
                 <td><label for="anio">A&ntilde;o: </label></td>
                 <td><input class="form-control" type="number" id="anio" th:field="*{anio}"><br><span th:errors="*{anio}" style="color:  #E81505;"></span></td>
             </tr>
-            <tr>
+            </div>
+            
+            <div class="form-group col-md-6">
+            
                 <td><label>Nota:</label></td>
                 <td><input class="form-control" type="number" step="0.1" id="nota" th:field="*{nota}"><br><span th:errors="*{nota}" style="color:  #E81505;"></span></td>
             </tr>
-            <tr>
-                <td colspan="2"><input type="submit" class="btn btn-success" value="Guardar Cambios">
-                <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./materiasExp'" /><br> <br>
-                </td>
-            </tr>
-            
-        </table>        
+            </div>
+              
+            <div class="form-group col-md-6">     
+        	<input type="submit" class="btn btn-success" value="Guardar Cambios">  
+        	</div>    
     </form>
 </div>
 
