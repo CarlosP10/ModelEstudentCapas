@@ -6,6 +6,12 @@
     <title>Modificar Cuenta</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -45,7 +51,22 @@
 </script>
 <body>
 
-<div>
+<!-- Navbar (sit on top) -->
+	<div class="w3-top">
+		<div class="w3-bar w3-white w3-padding w3-card"
+			style="letter-spacing: 4px;">
+			<a href="#home" class="w3-bar-item w3-button">AREA DEL ADMINISTRADOR</a>
+			<!-- Right-sided navbar links. Hide them on small screens -->
+			<div class="w3-right w3-hide-small">
+				<a href="./cuentaTable" class="w3-bar-item w3-button">Catalogo usuarios</a>
+				<a href="./materiasTable" class="w3-bar-item w3-button">Catalogo materias</a>
+				<a href="./escuelasTable" class="w3-bar-item w3-button">Catalogo escuelas</a>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+
+<div class="card-body">
     <h1> Editar Cuenta de Usuario </h1>
     <form th:action="@{/guardarCuentan}" th:object="${cuenta}" method="post">
         <table>
