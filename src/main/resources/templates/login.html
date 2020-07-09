@@ -1,29 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<html xmlms:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Login</title>
 </head>
 <body>
-			<!-- Default form login -->
-<form class="text-center border border-light p-5" action="@{/login}">
 
-	<h1>Modulo de Administracion de Estudiantes </h1>
-    <p class="h4 mb-4">Iniciar Sesion</p>
+	<!-- Navbar (sit on top) -->
+	<div class="w3-top">
+		<div class="w3-bar w3-white w3-padding w3-card"
+			style="letter-spacing: 4px;">
+			<a href="#home" class="w3-bar-item w3-button">DREVBOKS</a>
+			<!-- Right-sided navbar links. Hide them on small screens -->
+			<div class="w3-right w3-hide-small">
+				<a href="#iniciarS" class="w3-bar-item w3-button">Iniciar Sesion</a>
+				<a href="#contact" class="w3-bar-item w3-button">Integrantes</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+	<header class="w3-display-container w3-content w3-wide"
+		style="max-width: 1600px; min-width: 500px" id="home">
+		<img class="w3-image" src="/w3images/hamburger.jpg"
+			alt="Hamburger Catering" width="1600" height="800">
+		<div class="w3-display-bottomleft w3-padding-large w3-opacity">
+			<h1 class="w3-xxlarge">DREVBOKS</h1>
+		</div>
+	</header>
+	<!-- Page content -->
+	<div class="w3-content" style="max-width: 1100px">
+
+		<!-- Default form login -->
+		<div class="w3-container w3-padding-64" id="iniciarS">
+			<form class="text-center border border-light p-5" action="@{/login}">
+
+				<h1>Modulo de Administracion
+					de Estudiantes </h1><br>
+				<p class="h4 mb-4">Iniciar Sesion</p>
 
     <!-- Email -->
-    <input type="text" id="nombre_usuario" class="form-control mb-4" placeholder="Usuario" name="nombre_usuario">
+    <input type="text" id="nombre_usuario" class="form-control mb-4"
+					placeholder="Usuario" name="nombre_usuario">
 
     <!-- Password -->
-    <input type="password" id="contrasenia" class="form-control mb-4" placeholder="Contraseña" name="contrasenia">
+    <input type="password" id="contrasenia" class="form-control mb-4"
+					placeholder="Contraseña" name="contrasenia">
 
     <div class="d-flex justify-content-around">
         <div>
             <!-- Remember me -->
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                <input type="checkbox" class="custom-control-input"
+								id="defaultLoginFormRemember">
+                <label class="custom-control-label"
+								for="defaultLoginFormRemember">Remember me</label>
             </div>
         </div>
         <div>
@@ -37,6 +75,33 @@
     </p>
 
 </form>
+</div>
 <!-- Default form login -->
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-64" id="contact">
+    <h1>Integrantes</h1>
+			<br>
+    <p class="w3-text-blue-grey w3-large">
+				<b>Carlos Mauricio Paredes Pineda    </b>
+			</p>
+    <p class="w3-text-blue-grey w3-large">
+				<b>Esther Maria Lara Garcia       00049717    </b>
+			</p>
+    <p class="w3-text-blue-grey w3-large">
+				<b>Mario Andres Muñoz Kessler     00405016   </b>
+			</p>
+
+ 
+  </div>
+  
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-32">
+  <p>Programacion N Capas </a>
+		</p>
+</footer>
 </body>
 </html>

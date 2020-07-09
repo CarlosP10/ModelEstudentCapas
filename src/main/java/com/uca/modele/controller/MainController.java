@@ -15,54 +15,11 @@ import com.uca.modele.service.CuentaService;
 @Controller
 public class MainController {
 
-	@Autowired
-	private CuentaService cuentaService;
-	
 	@RequestMapping("/login")
-	public ModelAndView login() {
+	public ModelAndView indexLaboratorio8() {
 		ModelAndView mav = new ModelAndView();
-		Cuenta cuenta = new Cuenta();
-		
-		mav.addObject("error", "");
-		mav.addObject("cuenta", cuenta);
 		mav.setViewName("login");
-		
 		return mav;
-		
-	}
-	
-	@RequestMapping(value="/verificar", method = RequestMethod.POST)
-	public @ResponseBody boolean verificar(@RequestBody Cuenta login) {
-
-		try {
-			Cuenta user = cuentaService.findOne((login.getIdCuenta()));
-
-
-			if(user != null){
-				String contrasenia = user.getContrasenia();
-				if(contrasenia.equals(login.getContrasenia())){
-					user.setSesion(true);
-
-					try {
-						cuentaService.save(user);
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-
-					return true;
-				}
-
-				return false;
-
-			}else{
-				return false;
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-
 	}
 
 }
