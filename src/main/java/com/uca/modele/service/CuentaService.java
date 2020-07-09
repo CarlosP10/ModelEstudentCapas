@@ -21,6 +21,8 @@ public interface CuentaService {
 	public List<Cuenta> findAll(Sort sort);
 
 	public Cuenta findOne(Integer codigo) throws DataAccessException;
+	
+	public Cuenta findOneUserName(String dataS) throws DataAccessException;
 
 	public void save(Cuenta c) throws DataAccessException;	
 	

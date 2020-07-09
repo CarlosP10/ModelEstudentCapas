@@ -19,6 +19,9 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer>{
 	
 	@Query(value = "SELECT * from public.cuenta where id_cuenta = :cuenta", nativeQuery = true)
     public Cuenta findCuentateById(@Param("cuenta") Integer cuenta);
+	
+	@Query(value = "SELECT * from public.cuenta where nombre_usuario = :cuenta", nativeQuery = true)
+    public Cuenta findCuentateByUsername(@Param("cuenta") String cuenta);
 
 	public List<Cuenta> findAll(Sort sort);
 	
