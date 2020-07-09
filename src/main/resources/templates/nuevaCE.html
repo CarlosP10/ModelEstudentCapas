@@ -74,7 +74,7 @@
 	
     <h1> Editar Centro Educativo </h1><br> <br>   
     <form method="post" th:action="@{/guardarEscuelasn}" th:object="${escuelas}" >
-    	<input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" /><br> <br>
+    	
         <input class="form-control" type="hidden" th:field="*{idEscuela}">
         <br><span th:errors="*{idEscuela}" style="color:  #e81505;"></span><br>
         
@@ -93,6 +93,8 @@
         <label>Estado:</label>
         <input type="checkbox" id="estado"  th:field="*{estado}" > Activo
         <input class="btn btn-success" type="submit" value="Guardar Centro Escolar">
+        
+        <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./escuelasTable'" /><br> <br>
 
     </form>
 </div>
