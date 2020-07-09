@@ -78,7 +78,7 @@ public class ExpedienteController {
 	
 	@RequestMapping("/verExpediente")
 	public @ResponseBody List<Expediente> verExpediente() {
-		Sort sort = Sort.by(Direction.ASC, "ccliente");
+		Sort sort = Sort.by(Direction.ASC, "idExpediente");
 		return expedienteService.findAll(sort);
 	}
 
@@ -130,7 +130,7 @@ public class ExpedienteController {
 
 		if(result.hasErrors()) 
 		{
-			mav.setViewName("ingresarCategoria");
+			mav.setViewName("nuevoExp");
 		}
 		else 
 		{
