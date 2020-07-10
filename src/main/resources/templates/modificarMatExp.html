@@ -39,10 +39,16 @@
   
   <link rel="stylesheet" type="text/css" media="all" href="../css/ui/sweet-alert.css" th:href="@{/css/ui/sweetalert.css}" />
   <script type="text/javascript" th:src="@{/js/ui/sweetalert.min.js}"></script>
+  
+  <script>
+        function LimpiarCampos(){
+            document.getElementById("anio").value="";
+            document.getElementById("nota").value="";
+        }
+    </script>
+    
 </head>
-<script type="text/javascript">
-	
-</script>
+
 <body>
 
 <div>
@@ -80,6 +86,9 @@
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" class="btn btn-success" value="Guardar Cambios">
+                
+                <button type="button" value="Limpiar" text="Limpiar" class="btn btn-warning" onclick="LimpiarCampos()">Limpiar</button>
+                
                 <input type="button" class="btn btn-secondary" value="Regresar" onclick="location.href='./pantallaInicialExpediente'" /><br> <br>
                 </td>
             </tr>

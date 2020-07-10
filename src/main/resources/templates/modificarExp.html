@@ -56,10 +56,23 @@
 <link rel="stylesheet" type="text/css" media="all"
 	href="../css/ui/sweet-alert.css" th:href="@{/css/ui/sweetalert.css}" />
 <script type="text/javascript" th:src="@{/js/ui/sweetalert.min.js}"></script>
+
+<script>
+        function LimpiarCampos(){
+            document.getElementById("nombres").value="";
+            document.getElementById("apellidos").value="";
+            document.getElementById("numerocarnet").value="";
+            document.getElementById("fechaNacimiento").value="";
+            document.getElementById("direccion").value="";
+            document.getElementById("telefonoFijo").value="";
+            document.getElementById("telefonoMovil").value="";
+            document.getElementById("nombrePadre").value = "";
+            document.getElementById("nombreMadre").value="";
+        }
+    </script>
+
 </head>
-<script type="text/javascript">
-	
-</script>
+
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -89,25 +102,25 @@
 			<input type="hidden" th:field="*{idExpediente}">
 
 			<div class="form-group col-md-6">
-				<label>Nombres :</label><br> <input class="form-control"
+				<label>Nombres :</label><br> <input id = "nombres" class="form-control"
 					type="text" th:field="*{nombres}"><br> <span
 					th:errors="*{nombres}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<label>Apellidos:</label><br> <input class="form-control"
+				<label>Apellidos:</label><br> <input id = "apellidos"  class="form-control"
 					type="text" th:field="*{apellidos}"><br> <span
 					th:errors="*{apellidos}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<label>Numero de Carnet de minoridad:</label><br> <input
+				<label>Numero de Carnet de minoridad:</label><br> <input id = "numerocarnet" 
 					class="form-control" type="text" th:field="*{numerocarnet}"><br>
 				<span th:errors="*{numerocarnet}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<label>Fecha de Nacimiento:</label><br> <input
+				<label>Fecha de Nacimiento:</label><br> <input id = "fechaNacimiento" 
 					class="form-control" type="text" th:field="*{fechaNacimiento}"><br>
 				<span th:errors="*{fechaNacimiento}" style="color: #E81505;"></span>
 			</div>
@@ -126,19 +139,19 @@
 			</div>
 
 			<div class="form-group col-md-6">
-				<br> <label>Direccion:</label><br> <input
+				<br> <label>Direccion:</label><br> <input id = "direccion" 
 					class="form-control" type="text" th:field="*{direccion}"><br>
 				<span th:errors="*{direccion}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<br> <label>Telefono fijo:</label><br> <input
+				<br> <label>Telefono fijo:</label><br> <input id = "telefonoFijo" 
 					class="form-control" type="number" th:field="*{telefonoFijo}"><br>
 				<span th:errors="*{telefonoFijo}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<br> <label>Telefono movil:</label><br> <input
+				<br> <label>Telefono movil:</label><br> <input id = "telefonoMovil" 
 					class="form-control" type="number" th:field="*{telefonoMovil}"><br>
 				<span th:errors="*{telefonoMovil}" style="color: #E81505;"></span><br>
 				<br>
@@ -153,13 +166,13 @@
 			</div>
 
 			<div class="form-group col-md-6">
-				<label>Nombre del Padre:</label><br> <input
+				<label>Nombre del Padre:</label><br> <input id = "nombrePadre" 
 					class="form-control" type="text" th:field="*{nombrePadre}"><br>
 				<span th:errors="*{nombrePadre}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
-				<br> <label>Nombre de la Madre:</label><br> <input
+				<br> <label>Nombre de la Madre:</label><br> <input id = "nombreMadre" 
 					class="form-control" type="text" th:field="*{nombreMadre}"><br>
 				<span th:errors="*{nombreMadre}" style="color: #E81505;"></span><br>
 				<br>
@@ -170,9 +183,13 @@
 			<input type="submit" class="btn btn-success"
 			value="Guardar expediente"> 
 			
+			<button type="button" value="Limpiar" text="Limpiar" class="btn btn-warning" onclick="LimpiarCampos()">Limpiar</button>
+			
+			
 			<input type="button"
 			class="btn btn-secondary" value="Regresar"
-			onclick="location.href='./pantallaInicialExpediente'" /><br> <br>
+			onclick="location.href='./pantallaInicialExpediente'" />			
+			<br> <br>
 			</div>
 
 	</form>

@@ -61,8 +61,8 @@ public class CuentaServiceImpl implements CuentaService{
 	}
 
 	@Override
-	public Cuenta login(String user, String pass) throws DataAccessException {
-		return cuentaRepository.login(user, pass);
+	public Cuenta login(String nombre_usuario, String contrasenia) throws DataAccessException {
+		return cuentaRepository.login(nombre_usuario, contrasenia);
 	}
 
 	@Override

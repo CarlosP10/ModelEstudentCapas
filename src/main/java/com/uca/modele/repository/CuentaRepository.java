@@ -26,5 +26,5 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer>{
 	public List<Cuenta> findAll(Sort sort);
 	
 	@Query(nativeQuery = true, value = "select * from public.cuenta where nombre_usuario= ?1 and contrasenia = ?2")
-	public Cuenta login(String user, String pass) throws DataAccessException;
+	public Cuenta login(String nombre_usuario, String contrasenia) throws DataAccessException;
 }

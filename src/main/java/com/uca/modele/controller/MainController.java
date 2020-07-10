@@ -34,10 +34,10 @@ public class MainController {
 	@RequestMapping("/index")
 	public ModelAndView index(HttpSession request) {
 		ModelAndView mav = new ModelAndView();
-		Cuenta user = null;
-		if (request.getAttribute("user") != null) {
-			user = (Cuenta) request.getAttribute("user");
-			if (user.getIdTipo().getIdTipo() == 1) {
+		Cuenta cuentas = null;
+		if (request.getAttribute("nombre_usuario") != null) {
+			cuentas = (Cuenta) request.getAttribute("nombre_usuario");
+			if (cuentas.getIdTipo().getIdTipo() == 1) {
 				mav.setViewName("redirect:/indexAdmin");
 			} else {
 				mav.setViewName("redirect:/indexCoordi");
@@ -53,12 +53,12 @@ public class MainController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession request) {
 		ModelAndView mav = new ModelAndView();
-		Cuenta user = null;
+		Cuenta cuentas = null;
 		try {
-			user = (Cuenta) request.getAttribute("user");
-			user.setSesion(false);
-			cuentaService.save(user);
-			request.removeAttribute("user");
+			cuentas = (Cuenta) request.getAttribute("nombre_usuario");
+			cuentas.setSesion(false);
+			cuentaService.save(cuentas);
+			request.removeAttribute("nombre_usuario");
 			mav.setViewName("redirect:/index");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,23 +71,23 @@ public class MainController {
 	@RequestMapping("/iniciarSesion")
 	public ModelAndView iniciarSesion(@Valid @ModelAttribute Cuenta cuenta, BindingResult result, HttpSession request) {
 		ModelAndView mav = new ModelAndView();
-		Cuenta user = null;
+		Cuenta cuentas = null;
 		try {
-			user = cuentaService.login(cuenta.getNombreUsuario(), cuenta.getContrasenia());
-			if (user == null) {
+			cuentas = cuentaService.login(cuenta.getNombreUsuario(), cuenta.getContrasenia());
+			if (cuentas == null) {
 				mav.setViewName("index");
 				mav.addObject("mensaje", "Su usuario y/o contraseña son incorrectos!");
 			} else {
-				if (user.getEstado() == true) {
-					if (user.getSesion() == false) {
-						if (user.getIdTipo().getIdTipo() == 1) {
+				if (cuentas.getEstado() == true) {
+					if (cuentas.getSesion() == false) {
+						if (cuentas.getIdTipo().getIdTipo() == 1) {
 							mav.setViewName("redirect:/indexAdmin");
 						} else {
 							mav.setViewName("redirect:/indexCoordi");
 						}
-						user.setSesion(true);
-						cuentaService.save(user);
-						request.setAttribute("user", user);
+						cuentas.setSesion(true);
+						cuentaService.save(cuentas);
+						request.setAttribute("nombre_usuario", cuentas);
 					} else {
 						mav.setViewName("index");
 						mav.addObject("mensaje", "Su sesión ya esta activa!");
