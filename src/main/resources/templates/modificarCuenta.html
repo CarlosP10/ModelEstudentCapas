@@ -78,15 +78,15 @@
             </tr>
             <tr>
                 <td><label for="nombreUsuario">Usuario: </label></td>
-                <td><input class="form-control" type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
+                <td><input class="form-control" type="text" id="nombreUsuario" th:field="*{nombreUsuario}" required><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
             </tr>
             <tr>
                 <td><label for="nombre">Nombre: </label></td>
-                <td><input class="form-control" type="text" id="nombre" th:field="*{nombre}" ><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="nombre" th:field="*{nombre}" required><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
             </tr>           
             <tr>
                 <td><label for="apellido">Apellido: </label></td>
-                <td><input class="form-control" type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="apellido" th:field="*{apellido}" required><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
             </tr>
              <tr>
                 <td><label for="edad">Edad: </label></td>
@@ -115,7 +115,7 @@
             </tr>
             <tr>
                 <td><label for="fechaNac">Fecha de nacimiento: </label></td>
-                <td><input class="form-control" type="text" id="fechaNac" th:field="*{fechaNac}" ><br><span th:errors="*{fechaNac}" style="color:  #E81505;"></span>
+                <td><input class="form-control" type="text" id="fechaNac" th:field="*{fechaNac}" required><br><span th:errors="*{fechaNac}" style="color:  #E81505;"></span>
                 	<script type="text/javascript">
 				        $(function () {
 				            $('#fechaNac').datepicker({
@@ -127,7 +127,7 @@
             </tr>
             <tr>
                 <td><label for="dir">Dirección: </label></td>
-                <td><textarea id="dir" th:field="*{direccion}" rows="4" cols="50"></textarea><br><span th:errors="*{direccion}" style="color:  #E81505;"></span></td>
+                <td><textarea id="dir" th:field="*{direccion}" rows="4" cols="50" required></textarea><br><span th:errors="*{direccion}" style="color:  #E81505;"></span></td>
             </tr>
             <tr>
                 <td><label>Estado:</label></td>
@@ -135,7 +135,7 @@
             </tr>
             <tr>
                 <td><label>Descripcion:</label></td>
-                <td><input class="form-control" type="text" th:field="*{descripcion}"> </td>
+                <td><input class="form-control" type="text" th:field="*{descripcion}" required> </td>
             </tr>
             <tr>
                 <td><label for="contrasenia">Nueva Contraseña (No escribir si no se va a cambiar): </label></td>

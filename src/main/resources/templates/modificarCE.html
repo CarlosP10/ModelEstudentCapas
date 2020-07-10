@@ -78,10 +78,10 @@
         <input class="form-control" type="hidden" th:field="*{idEscuela}">
         
         <td><label class="col-sm-2 col-form-label">Nombre: </label>
-        <input class="form-control" type="text" th:field="*{nombre}"> <br> <br>
+        <input class="form-control" type="text" th:field="*{nombre}" required> <br> <br>
         
         <td><label class="col-sm-2 col-form-label">Descripcion: </label>
-        <input class="form-control" type="text" th:field="*{descripcion}"> <br> <br>
+        <input class="form-control" type="text" th:field="*{descripcion}" required> <br> <br>
         
         <Label class="form-check-label">Municipio:</Label>
         <select th:field="*{municipio.idMunicipio}">

@@ -75,11 +75,11 @@
 			<input class="form-control" type="text" th:field="*{idMateria}" hidden="hidden">
 			
 			<label class="col-sm-2 col-form-label">Nombre: </label>
-			<input class="form-control" type="text" th:field="*{nombre}"> 
+			<input class="form-control" type="text" th:field="*{nombre}" required> 
 			<br><span th:errors="*{nombre}" style="color:  #e81505;"></span><br>
 			
 			<label class="col-sm-2 col-form-label">Descripcion: </label>
-			<input class="form-control" type="text" th:field="*{descripcion}">
+			<input class="form-control" type="text" th:field="*{descripcion}" required>
 			<br><span th:errors="*{descripcion}" style="color:  #e81505;"></span><br>
 			
 			

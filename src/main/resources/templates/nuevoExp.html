@@ -105,25 +105,25 @@
 
 			<div class="form-group col-md-6">
 				<label>Nombres :</label><br> <input id = "nombres" class="form-control"
-					type="text" th:field="*{nombres}"><br> <span
+					type="text" th:field="*{nombres}" required><br> <span
 					th:errors="*{nombres}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<label>Apellidos:</label><br> <input id = "apellidos" class="form-control"
-					type="text" th:field="*{apellidos}"><br> <span
+					type="text" th:field="*{apellidos}" required><br> <span
 					th:errors="*{apellidos}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<label>Numero de Carnet de minoridad:</label><br> <input id = "numerocarnet"
-					class="form-control" type="text" th:field="*{numerocarnet}"><br>
+					class="form-control" type="text" th:field="*{numerocarnet}" required><br>
 				<span th:errors="*{numerocarnet}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<label>Fecha de Nacimiento:</label><br> <input
-					class="form-control" type="text" th:field="*{fechaNacimiento}"><br>
+					class="form-control" type="text" th:field="*{fechaNacimiento}" required><br>
 				<span th:errors="*{fechaNacimiento}" style="color: #E81505;"></span>
 			</div>
 			<script type="text/javascript">
@@ -137,19 +137,19 @@
 
 			<div class="form-group col-md-6">
 				<br> <label>Direccion:</label><br> <input id = "direccion"
-					class="form-control" type="text" th:field="*{direccion}"><br>
+					class="form-control" type="text" th:field="*{direccion}" required><br>
 				<span th:errors="*{direccion}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<br> <label>Telefono fijo:</label><br> <input id = "telefonoFijo"
-					class="form-control" type="number" th:field="*{telefonoFijo}"><br>
+					class="form-control" type="number" th:field="*{telefonoFijo}" required><br>
 				<span th:errors="*{telefonoFijo}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<br> <label>Telefono movil:</label><br> <input id = "telefonoMovil"
-					class="form-control" type="number" th:field="*{telefonoMovil}"><br>
+					class="form-control" type="number" th:field="*{telefonoMovil}" required><br>
 				<span th:errors="*{telefonoMovil}" style="color: #E81505;"></span><br>
 				<br>
 			</div>
@@ -164,13 +164,13 @@
 
 			<div class="form-group col-md-6">
 				<label>Nombre del Padre:</label><br> <input id = "nombrePadre"
-					class="form-control" type="text" th:field="*{nombrePadre}"><br>
+					class="form-control" type="text" th:field="*{nombrePadre}" required><br>
 				<span th:errors="*{nombrePadre}" style="color: #E81505;"></span><br>
 			</div>
 
 			<div class="form-group col-md-6">
 				<br> <label>Nombre de la Madre:</label><br> <input id = "nombreMadre"
-					class="form-control" type="text" th:field="*{nombreMadre}"><br>
+					class="form-control" type="text" th:field="*{nombreMadre}" required><br>
 				<span th:errors="*{nombreMadre}" style="color: #E81505;"></span><br>
 				<br>
 			</div>

@@ -80,11 +80,11 @@
         <br><span th:errors="*{idEscuela}" style="color:  #e81505;"></span><br>
         
         <td><label class="col-sm-2 col-form-label">Nombre: </label> </td>
-        <input class="form-control" type="text" th:field="*{nombre}"> 
+        <input class="form-control" type="text" th:field="*{nombre}" required> 
         <br><span th:errors="*{nombre}" style="color:  #e81505;"></span><br>
         
         <td><label class="col-sm-2 col-form-label">Descripcion: </label> </td>
-        <input class="form-control" type="text" th:field="*{descripcion}"> 
+        <input class="form-control" type="text" th:field="*{descripcion}" required> 
         <br><span th:errors="*{descripcion}" style="color:  #e81505;"></span><br>
         
         <td><Label class="form-check-label">Municipio:</Label></td> 

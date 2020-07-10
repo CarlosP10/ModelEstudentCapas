@@ -75,15 +75,15 @@
 
             <tr>
                 <td><label for="nombreUsuario">Usuario: </label></td>
-                <td><input class="form-control" type="text" id="nombreUsuario" th:field="*{nombreUsuario}" ><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
+                <td><input  class="form-control" type="text" id="nombreUsuario" th:field="*{nombreUsuario}" required><br><span th:errors="*{nombreUsuario}" style="color:  #e81505;"></span></td>
             </tr>
             <tr>
                 <td><label for="nombre">Nombre: </label></td>
-                <td><input class="form-control" type="text" id="nombre" th:field="*{nombre}" ><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="nombre" th:field="*{nombre}" required><br><span th:errors="*{nombre}" style="color:  #E81505;"></span></td>
             </tr>           
             <tr>
                 <td><label for="apellido">Apellido: </label></td>
-                <td><input class="form-control" type="text" id="apellido" th:field="*{apellido}" ><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
+                <td><input class="form-control" type="text" id="apellido" th:field="*{apellido}" required><br><span th:errors="*{apellido}" style="color:  #E81505;"></span></td>
             </tr>
              <tr>
                 <td><label for="departamento">Departamento: </label></td>
@@ -128,7 +128,7 @@
             </tr>
             <tr>
                 <td><label>Descripcion:</label></td>
-                <td><input class="form-control" type="text" th:field="*{descripcion}"> 
+                <td><input class="form-control" type="text" th:field="*{descripcion}" required> 
                 <br><span th:errors="*{descripcion}" style="color:  #E81505;"></span>
                 </td>
             </tr>
