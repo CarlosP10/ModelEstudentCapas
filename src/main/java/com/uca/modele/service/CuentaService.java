@@ -26,7 +26,7 @@ public interface CuentaService {
 
 	public void save(Cuenta c) throws DataAccessException;	
 	
-	Cuenta login(String nombre_usuario, String contrasenia) throws DataAccessException;
+	public Cuenta login(String nombre_usuario, String contrasenia) throws DataAccessException;
 
 
 }

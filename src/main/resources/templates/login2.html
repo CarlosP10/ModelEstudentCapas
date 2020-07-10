@@ -41,44 +41,48 @@
 
 		<!-- Default form login -->
 		<div class="w3-container w3-padding-64" id="iniciarS">
-		
-			<form class="text-center border border-light p-5" action="@{/iniciarSesion}" th:object="${cuenta}">
 
-				<h1>Modulo de Administracion de Estudiantes </h1><br>
-				
+			<form class="text-center border border-light p-5" method="post" th:action="@{/index2}" th:object="${cuenta}"
+				>
+
+				<h1>Modulo de Administracion de Estudiantes</h1>
+				<br>
+
 				<p class="h4 mb-4">Iniciar Sesion</p>
 
-			    <!-- Email -->
-			    <input type="text" id="nombre_usuario" class="form-control mb-4"
-								placeholder="Usuario" th:field="*{nombreUsuario}" name="nombre_usuario" required>
-			
-			    <!-- Password -->
-			    <input type="password" id="contrasenia" class="form-control mb-4"
-								placeholder="Contraseña" th:field="*{contrasenia}" name="contrasenia" required>
-			
-			    <div class="d-flex justify-content-around">
-			        <div>
-			            <!-- Remember me -->
-			            <div class="custom-control custom-checkbox">
-			                <input type="checkbox" class="custom-control-input"
-											id="defaultLoginFormRemember">
-			                <label class="custom-control-label"
-											for="defaultLoginFormRemember">Remember me</label>
-			            </div>
-			        </div>
-			        <div>
-			            <!-- Forgot password -->
-			            <a href="/registro?tipo=0" class="text-dark">Registrarse</a>
-			            
-			        </div>
-			    </div>
-			
-			    <!-- Sign in button -->
-			    <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesion</button>    
-			    </p>
+				<!-- Email -->
+				<input type="text" id="nombreusuario" class="form-control mb-4"
+					placeholder="Usuario" name="nombreusuario" >
 
-</form>
-</div>
+				<!-- Password -->
+				<input type="password" id="contrasenia" class="form-control mb-4"
+					placeholder="Contraseña" name="contrasenia" >
+
+				<div class="d-flex justify-content-around">
+					<div>
+						<!-- Remember me -->
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								id="defaultLoginFormRemember"> <label
+								class="custom-control-label" for="defaultLoginFormRemember">Remember
+								me</label>
+						</div>
+					</div>
+					<!-- Sign in button -->
+				<button class="btn btn-info btn-block my-4" type="submit">Iniciar
+					Sesion</button>
+					<div>
+						<!-- Forgot password -->
+						<a href="/registro?tipo=0" class="text-dark">Registrarse</a>
+
+					</div>
+				</div>
+
+				
+
+
+			</form>
+		</div>
 <!-- Default form login -->
 
   <!-- Contact Section -->

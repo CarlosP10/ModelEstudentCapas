@@ -65,7 +65,6 @@ public class CuentaServiceImpl implements CuentaService{
 		return cuentaRepository.login(nombre_usuario, contrasenia);
 	}
 
-	@Override
 	public Cuenta findOneUserName(String dataS) throws DataAccessException {
 		return cuentaRepository.findCuentateByUsername(dataS);
 	}
