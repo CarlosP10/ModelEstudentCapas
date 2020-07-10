@@ -31,7 +31,7 @@ public class MainController {
 	@Autowired
 	CuentaService cuentaService; 
 	
-	@RequestMapping("/main")
+	@RequestMapping("/index")
 	public String pantallaMain() {
 		return "login2";
 	}
